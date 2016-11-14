@@ -12,11 +12,12 @@
 </head>
 
 <body ng-controller="MainController as main">
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <a class="navbar-brand" href="#">WebApp</a>
         <ul class="nav navbar-nav">
-            <li class="active"><a ui-sref="hello" ui-sref-active="active">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active"><a ui-sref="content.hello" ui-sref-active="active">Link <span class="sr-only">(current)</span></a></li>
+            <li><a ui-sref="login.logging" ui-sref-active="active">Login</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -34,6 +35,8 @@
         <div class="jumbotron">
             <h1>Content ...</h1>
             <ui-view></ui-view>
+            <ui-view name="login">
+            </ui-view>
         </div>
 
     </div>
@@ -47,6 +50,7 @@
     <script src="./js/controller/main.controller.js"></script>
     <script src="./js/modules/helpers.module.js"></script>
     <script src="./js/services/data.service.js"></script>
+    <script src="./js/compopents/login.component.js"></script>
 
 
 
