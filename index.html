@@ -12,26 +12,42 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <a class="navbar-brand" href="#">WebApp</a>
             <ul class="nav navbar-nav">
-                <li class="active"><a ui-sref="content.hello" ui-sref-active="active">Link <span class="sr-only">(current)</span></a></li>
-                <li><a ui-sref="login.login" ui-sref-active="active">Login</a></li>
+                <li class="active"><a ui-sref="data.app" ui-sref-active="active">Link <span class="sr-only">(current)</span></a></li>
+                <li><a ui-sref="#" ui-sref-active="active">Login</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справочники <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        <li><a ui-sref="#" ui-sref-active="active">Справочник инкассаторских услуг</a></li>
+                        <li><a ui-sref="#" ui-sref-active="active">Типы заявки на инкассацию</a></li>
                     </ul>
                 </li>
+               
             </ul>
+            
+            
+            
             <ul class="nav navbar-nav pull-right">
-                <li class="dropdown">
+            
+             <li class="active"> 
+             <div ng-if="!main.isLogin" class="login">
+                 <form ng-submit="main.submit()" role="form" class="form-inline">
+                    <div class="form-group">
+                     
+                        <input type="text" ng-model="main.login" class="form-control" id="email" placeholder="Введите login">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" ng-model="main.password" class="form-control" id="pass" placeholder="Пароль">
+                    </div>
+                    <button type="submit" class="btn btn-success">Войти</button>
+                </form>
+             </div>
+                
+                </li>
+                <li ng-if="main.isLogin" class="dropdown">
                     <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Профиль<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref="autr.login" ui-sref-active="active">Войти</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a ui-sref="autr.logout" ui-sref-active="active">Выйти</a></li>
+                        <li><a ui-sref-active="active">Привет, {{main.person.name}}</a></li>
+                        <li><a ng-click="main.logout()" ui-sref-active="active">Выйти</a></li>
                     </ul>
                 </li>
                 <li><a ui-sref="login.logging" ui-sref-active="active">Информация</a></li>
@@ -46,14 +62,12 @@
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="./js/modules/components.module.js"></script>
-        <script src="./js/compopents/hello.component.js"></script>
+        <script src="./js/compopents/app.component.js"></script>
         <script src="./js/configs/rout.config.js"></script>
         <script src="./js/main.js"></script>
         <script src="./js/controller/main.controller.js"></script>
         <script src="./js/modules/helpers.module.js"></script>
         <script src="./js/services/data.service.js"></script>
-        <script src="./js/compopents/login.component.js"></script>
-        <script src="./js/compopents/logout.component.js"></script>
         <script src="./js/services/autr.service.js"></script>
     </body>
 </html>

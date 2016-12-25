@@ -1,3 +1,7 @@
 body {
     padding-top: 52px;
 }
+.login{
+	position: relative;
+	margin-top: 10px;
+}

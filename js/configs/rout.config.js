@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
 
@@ -7,19 +7,9 @@
         .config(RoutingConfig);
 
     function RoutingConfig($stateProvider) {
-        var login = {
-            name: 'login',
-            url: '/login',
-            abstaract: true,
-            views: {
-                login: {
-                    template: '<ui-view>',
-                }
-            }
-        }
         var stateContent = {
-            name: 'content',
-            url: '/content',
+            name: 'data',
+            url: '',
             abstaract: true,
             views: {
                 '': {
@@ -27,31 +17,55 @@
                 }
             }
         }
-        var state = {
-            name: 'content.hello',
-            url: '/hello',
-            component: 'hello',
-            resolve: {
-                person: function (dataService) {
-                    return dataService.getData("../js/json/first.json");
+        var appState = {
+                name: 'data.app',
+                url: '/app',
+                component: 'app',
+                resolve: {
+                    types: function(dataService) {
+                        return dataService.getData("../js/json/types.json");
+                    },
+                    services: function(dataService) {
+                        return dataService.getData("../js/json/services.json");
+                    }
                 }
+
+            }
+              var bookTypeState = {
+                name: 'data.book',
+                url: '/book/1',
+                component: 'app'
+               /* resolve: {
+                    types: function(dataService) {
+                        return dataService.getData("../js/json/types.json");
+                    },
+                    services: function(dataService) {
+                        return dataService.getData("../js/json/services.json");
+                    }
+                }
+*/
+            }
+              var bookServiceState = {
+                name: 'data.book',
+                url: '/book/2',
+                component: 'app',
+             /*   resolve: {
+                    types: function(dataService) {
+                        return dataService.getData("../js/json/types.json");
+                    },
+                    services: function(dataService) {
+                        return dataService.getData("../js/json/services.json");
+                    }
+                }
+*/
             }
 
-        }
-        var loginState = {
-            name: 'login.logging',
-            url: '/enterLogin',
-            component: 'login'
-                // resolve: {
-                // person: function (dataService) {
-                //    return dataService.getData("../js/json/first.json");
-                //  }
-                //}
-        }
-        $stateProvider.state(login);
-        $stateProvider.state(loginState);
+
+
         $stateProvider.state(stateContent);
-        $stateProvider.state(state);
+        $stateProvider.state(appState);
+        $stateProvider.state(bookTypeState);
+        $stateProvider.state(bookServiceState);
     };
 
 })();
