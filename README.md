@@ -1,4 +1,4 @@
-# Java client-server app
+# Artezio bank app
 
 ## Requirements
 
