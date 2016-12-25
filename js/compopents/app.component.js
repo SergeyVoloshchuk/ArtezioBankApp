@@ -4,17 +4,36 @@
         templateUrl: '../templates/app.template.html',
         bindings: {
             types: '<',
-            services: '<'
+            service: '<'
         },
-        controller: function() {
+        controller: function(storageUpdater) {
             console.log("app component");
             var vm = this;
             vm.createApp = createApp;
             vm.typeApps = vm.types.types;
-            vm.services = vm.services.services;
+            vm.services = vm.service.services;
             vm.addItem = addItem;
+            activate();
 
-            vm.listIncasObj = ["gtf","dfsfdsf"];
+            function activate() {
+                console.log("bookService activate");
+
+                //сохраняем в локальное хранилище если там ничего нет
+                if (localStorage.getItem("services") === null || localStorage.getItem("types") === null) {
+                    storageUpdater.updateItem("services", vm.service.services);
+                    vm.services = storageUpdater.getItem("services");
+                    storageUpdater.updateItem("types", vm.types.types);
+                    vm.typeApps = storageUpdater.getItem("types");
+
+                } else {
+                    vm.services = storageUpdater.getItem("services");
+                    vm.typeApps = storageUpdater.getItem("types");
+                }
+            }
+
+
+
+            vm.listIncasObj = ["gtf", "dfsfdsf"];
 
             function createApp() {
                 console.log("APP CREATE");
@@ -35,12 +54,12 @@
                 return currDate + "." + currMonth + "." + currYear + " " + timeHours + ":" + timeMinutes;
             }
 
-            function getNumberApp(){
+            function getNumberApp() {
                 //logic
                 return "2-0000000";
             }
 
-            function addItem(){
+            function addItem() {
                 vm.listIncasObj.push(vm.city);
             }
         }

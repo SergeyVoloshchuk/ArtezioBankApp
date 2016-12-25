@@ -2,8 +2,8 @@
     'use strict';
     angular.module('app.helpers')
         .service('loginService', LoginService);
-
-    function LoginService() {
+    LoginService.$inject = ['storageUpdater'];
+    function LoginService(storageUpdater) {
         var service = {
             check: check,
             getPerson: getPerson
@@ -15,7 +15,7 @@
 
             if (login === user.login && pass === user.password) {
                 localStorage.setItem("isLogin", true);
-                localStorage.setItem("role", user.role);
+                storageUpdater.updateItem("person",user);
                 return true;
             }
 

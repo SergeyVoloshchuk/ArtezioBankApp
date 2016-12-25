@@ -5,3 +5,10 @@ body {
 	position: relative;
 	margin-top: 10px;
 }
+.click {
+	cursor: pointer;
+}
+
+.unvisual-true{
+	display: none;
+}

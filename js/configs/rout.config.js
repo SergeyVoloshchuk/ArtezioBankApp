@@ -18,47 +18,41 @@
             }
         }
         var appState = {
-                name: 'data.app',
-                url: '/app',
-                component: 'app',
-                resolve: {
-                    types: function(dataService) {
-                        return dataService.getData("../js/json/types.json");
-                    },
-                    services: function(dataService) {
-                        return dataService.getData("../js/json/services.json");
-                    }
+            name: 'data.app',
+            url: '/app',
+            component: 'app',
+            resolve: {
+                types: function(dataService) {
+                    return dataService.getData("../js/json/types.json");
+                },
+                service: function(dataService) {
+                    return dataService.getData("../js/json/services.json");
                 }
+            }
 
-            }
-              var bookTypeState = {
-                name: 'data.book',
-                url: '/book/1',
-                component: 'app'
-               /* resolve: {
-                    types: function(dataService) {
-                        return dataService.getData("../js/json/types.json");
-                    },
-                    services: function(dataService) {
-                        return dataService.getData("../js/json/services.json");
-                    }
+        }
+        var bookTypeState = {
+            name: 'data.booktype',
+            url: '/book/1',
+            component: 'bookTypes',
+            resolve: {
+                type: function(dataService) {
+                    return dataService.getData("../js/json/types.json");
                 }
-*/
             }
-              var bookServiceState = {
-                name: 'data.book',
-                url: '/book/2',
-                component: 'app',
-             /*   resolve: {
-                    types: function(dataService) {
-                        return dataService.getData("../js/json/types.json");
-                    },
-                    services: function(dataService) {
-                        return dataService.getData("../js/json/services.json");
-                    }
+
+        }
+        var bookServiceState = {
+            name: 'data.bookservice',
+            url: '/book/2',
+            component: 'bookService',
+            resolve: {
+
+                service: function(dataService) {
+                    return dataService.getData("../js/json/services.json");
                 }
-*/
             }
+        }
 
 
 

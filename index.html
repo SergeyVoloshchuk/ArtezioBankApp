@@ -14,60 +14,65 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a ui-sref="data.app" ui-sref-active="active">Link <span class="sr-only">(current)</span></a></li>
                 <li><a ui-sref="#" ui-sref-active="active">Login</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справочники <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref="#" ui-sref-active="active">Справочник инкассаторских услуг</a></li>
-                        <li><a ui-sref="#" ui-sref-active="active">Типы заявки на инкассацию</a></li>
-                    </ul>
-                </li>
-               
-            </ul>
-            
-            
-            
-            <ul class="nav navbar-nav pull-right">
-            
-             <li class="active"> 
-             <div ng-if="!main.isLogin" class="login">
-                 <form ng-submit="main.submit()" role="form" class="form-inline">
-                    <div class="form-group">
-                     
-                        <input type="text" ng-model="main.login" class="form-control" id="email" placeholder="Введите login">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" ng-model="main.password" class="form-control" id="pass" placeholder="Пароль">
-                    </div>
-                    <button type="submit" class="btn btn-success">Войти</button>
-                </form>
-             </div>
+                <li ng-if="main.role==1"  class="dropdown">
+                    <a
+                        class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справочники <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            
+                            <li><a ui-sref="data.booktype" ui-sref-active="active">Типы заявки на инкассацию</a></li>
+                            <li ><a ui-sref="data.bookservice" ui-sref-active="active">Справочник инкассаторских услуг</a></li>
+                        </ul>
+                    </li>
+                    
+                </ul>
                 
-                </li>
-                <li ng-if="main.isLogin" class="dropdown">
-                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Профиль<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a ui-sref-active="active">Привет, {{main.person.name}}</a></li>
-                        <li><a ng-click="main.logout()" ui-sref-active="active">Выйти</a></li>
-                    </ul>
-                </li>
-                <li><a ui-sref="login.logging" ui-sref-active="active">Информация</a></li>
-            </ul>
-        </nav>
-        <div class="container">
-            <div class="jumbotron">
-                <h1>Content ...</h1>
-                <ui-view></ui-view>
+                
+                
+                <ul class="nav navbar-nav pull-right">
+                    
+                    <li class="active">
+                        <div ng-if="!main.isLogin" class="login">
+                            <form ng-submit="main.submit()" role="form" class="form-inline">
+                                <div class="form-group">
+                                    
+                                    <input type="text" ng-model="main.login" class="form-control" id="email" placeholder="Введите login">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" ng-model="main.password" class="form-control" id="pass" placeholder="Пароль">
+                                </div>
+                                <button type="submit" class="btn btn-success">Войти</button>
+                            </form>
+                        </div>
+                        
+                    </li>
+                    <li ng-if="main.isLogin" class="dropdown">
+                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Профиль<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref-active="active">Привет, {{main.person.name}}</a></li>
+                            <li><a ng-click="main.logout()" ui-sref-active="active">Выйти</a></li>
+                        </ul>
+                    </li>
+                    <li><a ui-sref="login.logging" ui-sref-active="active">Информация</a></li>
+                </ul>
+            </nav>
+            <div class="container">
+                <div class="jumbotron">
+                    <h1>Content ...</h1>
+                    <ui-view></ui-view>
+                </div>
             </div>
-        </div>
-        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="./js/modules/components.module.js"></script>
-        <script src="./js/compopents/app.component.js"></script>
-        <script src="./js/configs/rout.config.js"></script>
-        <script src="./js/main.js"></script>
-        <script src="./js/controller/main.controller.js"></script>
-        <script src="./js/modules/helpers.module.js"></script>
-        <script src="./js/services/data.service.js"></script>
-        <script src="./js/services/autr.service.js"></script>
-    </body>
-</html>
+            <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+            <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+            <script src="./js/modules/components.module.js"></script>
+            <script src="./js/compopents/app.component.js"></script>
+            <script src="./js/configs/rout.config.js"></script>
+            <script src="./js/main.js"></script>
+            <script src="./js/controller/main.controller.js"></script>
+            <script src="./js/modules/helpers.module.js"></script>
+            <script src="./js/services/data.service.js"></script>
+            <script src="./js/services/autr.service.js"></script>
+            <script src="./js/compopents/bookServices.component.js"></script>
+            <script src="./js/compopents/bookTypes.component.js"></script>
+            <script src="./js/services/storageUpdater.service.js"></script>
+        </body>
+    </html>
