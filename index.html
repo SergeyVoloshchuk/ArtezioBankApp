@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="//npmcdn.com/angular-ui-router@1.0.0-alpha.4/release/angular-ui-router.js"></script>
-</head>
-
-<body ng-controller="MainController as main">
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <a class="navbar-brand" href="#">WebApp</a>
-        <ul class="nav navbar-nav">
-            <li class="active"><a ui-sref="content.hello" ui-sref-active="active">Link <span class="sr-only">(current)</span></a></li>
-            <li><a ui-sref="login.logging" ui-sref-active="active">Login</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
-            </li>
-        </ul>
-
-    </nav>
-    <div class="container">
-        <div class="jumbotron">
-            <h1>Content ...</h1>
-            <ui-view></ui-view>
-            <ui-view name="login">
-            </ui-view>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="//npmcdn.com/angular-ui-router@1.0.0-alpha.4/release/angular-ui-router.js"></script>
+    </head>
+    <body ng-controller="MainController as main">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <a class="navbar-brand" href="#">WebApp</a>
+            <ul class="nav navbar-nav">
+                <li class="active"><a ui-sref="content.hello" ui-sref-active="active">Link <span class="sr-only">(current)</span></a></li>
+                <li><a ui-sref="login.login" ui-sref-active="active">Login</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown">
+                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Профиль<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="autr.login" ui-sref-active="active">Войти</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a ui-sref="autr.logout" ui-sref-active="active">Выйти</a></li>
+                    </ul>
+                </li>
+                <li><a ui-sref="login.logging" ui-sref-active="active">Информация</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Content ...</h1>
+                <ui-view></ui-view>
+            </div>
         </div>
-
-    </div>
-
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./js/modules/components.module.js"></script>
-    <script src="./js/compopents/hello.component.js"></script>
-    <script src="./js/configs/rout.config.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="./js/controller/main.controller.js"></script>
-    <script src="./js/modules/helpers.module.js"></script>
-    <script src="./js/services/data.service.js"></script>
-    <script src="./js/compopents/login.component.js"></script>
-
-
-
-
-</body>
-
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./js/modules/components.module.js"></script>
+        <script src="./js/compopents/hello.component.js"></script>
+        <script src="./js/configs/rout.config.js"></script>
+        <script src="./js/main.js"></script>
+        <script src="./js/controller/main.controller.js"></script>
+        <script src="./js/modules/helpers.module.js"></script>
+        <script src="./js/services/data.service.js"></script>
+        <script src="./js/compopents/login.component.js"></script>
+        <script src="./js/compopents/logout.component.js"></script>
+        <script src="./js/services/autr.service.js"></script>
+    </body>
 </html>
