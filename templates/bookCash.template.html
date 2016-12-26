@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">Справочник инкасаторских услуг</div>
+	<div class="panel-heading">Коды валют</div>
 	<div class="panel-body">
 		<p>Здесь произвольный текст. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 	</div>
@@ -14,7 +14,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in $ctrl.services">
+			<tr ng-repeat="item in $ctrl.codes">
 				<td>{{item.id}}</td>
 				<td> {{item.name}}
 					<div ng-if="$ctrl.inpFlag&&$ctrl.index===$index" class="col-sm-10">

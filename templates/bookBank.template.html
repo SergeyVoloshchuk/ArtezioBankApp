@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">Справочник инкасаторских услуг</div>
+	<div class="panel-heading">Обслуживающие банки</div>
 	<div class="panel-body">
 		<p>Здесь произвольный текст. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
 	</div>
@@ -14,7 +14,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in $ctrl.services">
+			<tr ng-repeat="item in $ctrl.banks">
 				<td>{{item.id}}</td>
 				<td> {{item.name}}
 					<div ng-if="$ctrl.inpFlag&&$ctrl.index===$index" class="col-sm-10">
@@ -22,8 +22,8 @@
 					</td>
 					
 					<td>
-					<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.updateItem(item,item.name ,$index)" type="button" class="btn btn-default">Сохранить</button>
-					<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.back()" type="button" class="btn btn-default">Отменить</button>
+						<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.updateItem(item,item.name ,$index)" type="button" class="btn btn-default">Сохранить</button>
+						<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.back()" type="button" class="btn btn-default">Отменить</button>
 						<div class="btn-group unvisual-{{$ctrl.inpFlag}}">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Действие <span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu">
@@ -44,4 +44,9 @@
 					</center>
 				</div>
 	</div>
+				
+				
+				
+				
+				
 			</div>

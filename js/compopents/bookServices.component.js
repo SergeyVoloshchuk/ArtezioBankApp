@@ -13,6 +13,7 @@
             vm.goUpdateItem = goUpdateItem;
             vm.updateItem = updateItem;
             vm.back = back;
+            vm.add = add;
             activate();
 
             function activate() {
@@ -51,6 +52,16 @@
 
             function back() {
                 vm.inpFlag = false;
+            }
+            function add() {
+                var item = {};
+                item.id = vm.services[vm.services.length - 1].id + 1;
+                item.name = vm.newText;
+                item.$$hashKey = vm.services[vm.services.length - 1].$$hashKey + 1;
+                vm.services.push(item);
+                vm.newText = "";
+                storageUpdater.updateItem("services", vm.services);
+                vm.services = storageUpdater.getItem("services");
             }
         }
     })

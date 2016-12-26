@@ -22,8 +22,8 @@
 					</td>
 					
 					<td>
-					<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.updateItem(item,item.name ,$index)" type="button" class="btn btn-default">Сохранить</button>
-					<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.back()" type="button" class="btn btn-default">Отменить</button>
+						<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.updateItem(item,item.name ,$index)" type="button" class="btn btn-default">Сохранить</button>
+						<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.back()" type="button" class="btn btn-default">Отменить</button>
 						<div class="btn-group unvisual-{{$ctrl.inpFlag}}">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Действие <span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu">
@@ -35,4 +35,13 @@
 						
 					</tbody>
 				</table>
+				<div class="panel-body">
+		<div class="col-sm-6">
+		<center>
+					<input type="text" ng-model="$ctrl.newText" class="form-control" placeholder="Название">
+					<br>
+					<button type="button" ng-click="$ctrl.add()" class="btn btn-default">Добавить</button>
+					</center>
+				</div>
+	</div>
 			</div>

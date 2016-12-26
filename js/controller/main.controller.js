@@ -14,9 +14,7 @@
             console.log('Main Controller activated');
             if (localStorage.getItem("isLogin") !== null) {
                 vm.isLogin = localStorage.getItem("isLogin");
-
-              //  var a = storageUpdater.getItem("person");
-              //  console.log(a);
+                vm.person = JSON.parse(localStorage.getItem("person"));
             }
 
         }
@@ -26,19 +24,20 @@
             vm.isLogin = false;
             localStorage.removeItem("person");
             localStorage.removeItem("isLogin");
+            vm.person = null;
         }
 
         function submit() {
 
             dataService.getData("../js/json/persons.json").then(function(res) {
                 var persons = res;
-                vm.person = loginService.getPerson(persons, vm.login);
-                return vm.person;
+                var person = loginService.getPerson(persons, vm.login);
+                return person;
             }).then(function(res) {
                 var flag = loginService.check(vm.login, vm.password, res);
                 if (flag === true) {
                     vm.isLogin = localStorage.getItem("isLogin");
-                    vm.role = vm.person.role;
+                    vm.person = JSON.parse(localStorage.getItem("person"));
                 } else {
                     vm.login = "";
                     vm.password = "";
