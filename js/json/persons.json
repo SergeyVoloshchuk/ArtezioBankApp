@@ -2,6 +2,7 @@
     
     "persons":
         [{
+            "id" : 1,
             "name": "Jhon",
             "surname": "Lenon",
             "age": 25,
@@ -9,7 +10,7 @@
             "login": "test",
             "password": "test"
         },
-        {
+        {   "id" : 2,
         	"name": "Ivan",
             "surname": "Ivanovoch",
             "age": 40,

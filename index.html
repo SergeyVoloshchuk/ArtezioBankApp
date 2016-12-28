@@ -13,7 +13,7 @@
             <a class="navbar-brand" href="/">BankApp</a>
             <ul class="nav navbar-nav">
                 <li class="active"><a ui-sref="data.app" ui-sref-active="active">Заявка на инкасацию <span class="sr-only">(current)</span></a></li>
-                <li><a ui-sref="#" ui-sref-active="active">Заявки</a></li>
+                <li><a ui-sref="data.apps" ui-sref-active="active">Заявки</a></li>
                 <li ng-if="main.person.role==1"  class="dropdown">
                     <a
                         class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справочники <span class="caret"></span></a>
@@ -68,6 +68,7 @@
         </div>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./js/classModule/collection.js"></script>
         <script src="./js/modules/components.module.js"></script>
         <script src="./js/compopents/app.component.js"></script>
         <script src="./js/configs/rout.config.js"></script>
@@ -83,7 +84,8 @@
         <script src="./js/compopents/bookCash.component.js"></script>
         <script src="./js/compopents/bookMethod.component.js"></script>
         <script src="./js/compopents/bookBank.component.js"></script>
-        <script src="./js/services/directive.js"></script>
+        <script src="./js/compopents/apps.component.js"></script>
+       
         
     </body>
 </html>

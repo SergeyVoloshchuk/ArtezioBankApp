@@ -24,7 +24,7 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Примечание</label>
 		<div class="col-sm-9">
-			<textarea rows="10" class="form-control" cols="45" placeholder="Примечание" name="text"></textarea>
+			<textarea rows="10" name="otherText" ng-model="$ctrl.otherText" class="form-control" cols="45" placeholder="Примечание" name="text"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
@@ -73,9 +73,9 @@
 		<label  class="col-sm-3 control-label">Номер счета зачисления</label>
 		<div class="col-sm-9">
 			<input type="number" name="numberItem"  min="0" ng-model="$ctrl.numberItem" ng-maxlength="20" class="form-control"  placeholder="Номер счета клиента в банке, на который требуется зачислить инкассированные денежные средства" required>
-			<span ng-show="$ctrl.appform.numberItem.$error.maxlength" class="label label-danger">Слишком длинный счёт</span>
-			<span ng-show="$ctrl.appform.numberItem.$error.required" class="label label-warning">Не указан номер счета зачисления</span>
-			<span ng-show="$ctrl.appform.numberItem.$error.min" class="label label-warning">Число не может быть меньше 0</span>
+			<span ng-show="$ctrl.appform.numberItem.$error.maxlength" class="label label-danger"> Количество символов в поле Счет не соответствует норме (20)</span>
+			<span ng-show="$ctrl.appform.numberItem.$error.required" class="label label-warning"> Не указан счет для перечисления инкассированных средств</span>
+			<span ng-show="$ctrl.appform.numberItem.$error.min" class="label label-danger">Количество символов в поле Счет не соответствует норме (20)</span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -123,7 +123,7 @@
 <div class="panel panel-default">
 <div class="panel-heading">Добавленные объекты инкасации</div>
 <ul class="list-group">
-	<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item}}</li>
+	<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item.timeGetCash}}</li>
 </ul>
 </div>
 <div class="panel panel-default">
@@ -132,9 +132,9 @@
 <div class="panel-body">
 	<p>Добавьте объекты инкасации</p>
 </div>
-<!-- List group -->
+<!-- Добавление объектов -->
 <ul class="list-group">
-	<form ng-submit="$ctrl.$ctrl.addItem()" name="$ctrl.objForm" class="form-horizontal" novalidate>
+	<form ng-submit="$ctrl.addItem()" name="$ctrl.objForm" class="form-horizontal" novalidate>
 		<li class="list-group-item">
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Желательное время сдачи наличных (самостоятельно)/ время прибытия инкассаторов</label>
@@ -161,7 +161,7 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Периодичность оказания инкассаторских услуг</label>
 				<div class="col-sm-9">
-					<select class="form-control" ng-pattern="/(День недели)/" name="periodServ" ng-model="$ctrl.periodServ" required>
+					<select class="form-control" ng-init="flagServ" ng-change="flagServ = $ctrl.periodCheck($ctrl.periodServ)" name="periodServ" ng-model="$ctrl.periodServ" required>
 						<option ng-repeat="item in $ctrl.periods">{{item.name}}</option>
 					</select>
 					<span  ng-show="$ctrl.objForm.periodServ.$error.required" class="label label-warning">Не указан период оказания инкассаторских услуг </span>
@@ -173,7 +173,15 @@
 			<div class="form-group">
 				<label  class="col-sm-3 control-label">День недели</label>
 				<div class="col-sm-9">
-					<input type="text" name="day" ng-model="$ctrl.day" class="form-control" placeholder="День недели, выбираемый для оказания услуг по объекту инкассации" ng-required="!$ctrl.objForm.periodServ.$error.pattern" ng-disabled="$ctrl.objForm.periodServ.$error.pattern">
+					<select name="day" ng-model="$ctrl.day" class="form-control" ng-required="flagServ" ng-disabled="!flagServ">
+						<option value="Понедельник">Понедельник</option>
+						<option value="Вторник">Вторник </option>
+						<option value="Среда">Среда </option>
+						<option value="Четверг">Четверг </option>
+						<option value="Пятница">Пятница</option>
+						<option value="Суббота">Суббота</option>
+						<option value="Воскресенье">Воскресенье</option>
+					</select>
 					<span ng-show="$ctrl.objForm.day.$error.required" class="label label-warning">День недели, выбираемый для оказания услуг по объекту инкассации </span>
 				</div>
 			</div>
@@ -242,7 +250,7 @@
 					<input type="text" name="sundayFirst" ng-init="flag5" ng-model="$ctrl.sundayFirst" class="form-control"  placeholder="С" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-change="flag6 = $ctrl.validTime($ctrl.sundayFirst)" ng-required="flag5">
 					<span  ng-show="$ctrl.objForm.sundayFirst.$error.required" class="label label-warning">Заполните поле</span>
 					<span  ng-show="$ctrl.objForm.sundayFirst.$error.pattern" class="label label-danger">Задайте время в формате чч:мм </span>
-					<input type="text" name="sundaySecond" ng-init="flag6" ng-change="flag5 = $ctrl.validTime($ctrl.saturdaySecond)" ng-model="$ctrl.sundaySecond" class="form-control"  placeholder="До" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-required="flag6">
+					<input type="text" name="sundaySecond" ng-init="flag6" ng-change="flag5 = $ctrl.validTime($ctrl.sundaySecond)" ng-model="$ctrl.sundaySecond" class="form-control"  placeholder="До" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-required="flag6">
 					<span  ng-show="$ctrl.objForm.sundaySecond.$error.required" class="label label-warning">Заполните поле</span>
 					<span  ng-show="$ctrl.objForm.sundaySecond.$error.pattern" class="label label-danger">Задайте время в формате чч:мм </span>
 				</div>
@@ -312,8 +320,7 @@
 					<span  ng-show="$ctrl.objForm.numberHouse.$error.maxlength" class="label label-danger">Превысили допустимый предел </span>
 				</div>
 			</div>
-
-				<div class="form-group">
+			<div class="form-group">
 				<label  class="col-sm-3 control-label">Корпус (строение)</label>
 				<div class="col-sm-9">
 					<input type="text" name="corpusHouse" ng-maxlength="20" ng-model="$ctrl.corpusHouse" class="form-control"  placeholder="Корпус (строение), в котором находится объект инкассации">

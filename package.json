@@ -1,5 +1,5 @@
 {
-  "name": "JavaWebApp",
+  "name": "ArtezioBankApp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SergeyVoloshchuk/JavaWebApp.git"
+    "url": "git+https://github.com/SergeyVoloshchuk/ArtezioBankApp.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SergeyVoloshchuk/JavaWebApp/issues"
+    "url": "https://github.com/SergeyVoloshchuk/ArtezioBankApp/issues"
   },
-  "homepage": "https://github.com/SergeyVoloshchuk/JavaWebApp#readme",
+  "homepage": "https://github.com/SergeyVoloshchuk/ArtezioBankApp#readme",
   "dependencies": {
     "angular-ui-router": "^0.3.2",
     "bower": "^1.8.0",

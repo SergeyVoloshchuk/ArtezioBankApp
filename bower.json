@@ -1,12 +1,12 @@
 {
-  "name": "JavaWebApp",
+  "name": "ArtezioBankApp",
   "description": "",
   "main": "index.js",
   "authors": [
     "SergeyVoloshchuk <sergeyvolochuc@gmail.com>"
   ],
   "license": "ISC",
-  "homepage": "https://github.com/SergeyVoloshchuk/JavaWebApp",
+  "homepage": "https://github.com/SergeyVoloshchuk/ArtezioBankApp",
   "ignore": [
     "**/.*",
     "node_modules",

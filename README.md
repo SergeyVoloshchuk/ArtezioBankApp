@@ -5,15 +5,22 @@
 - Install Node
     - https://nodejs.org/en/
 
-## Installing Node.js and Bower Packages
+
+
+## Installing Bower
+`npm install` will install these too, but you can do it manually.
 - Open terminal
+- Type `sudo npm bower install -g`
+
+## Installing Node.js Packages
+- Open terminal in your directory
 - Type `npm install`
 
 ## Installing Bower Packages
 `npm install` will install these too, but you can do it manually.
-- Open terminal
+- Open terminal in your directory
 - Type `bower install`
 
 ## Running
-- Open terminal
-- Type `http-server -p 8000`
+- Open terminal in your directory
+- Type `node bin/http-server`

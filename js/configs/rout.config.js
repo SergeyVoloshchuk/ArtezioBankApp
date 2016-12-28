@@ -31,13 +31,13 @@
                 period: function(dataService) {
                     return dataService.getData("../js/json/period.json");
                 },
-                 code: function(dataService) {
+                code: function(dataService) {
                     return dataService.getData("../js/json/codesCash.json");
                 },
                 method: function(dataService) {
                     return dataService.getData("../js/json/method.json");
                 },
-                  bank: function(dataService) {
+                bank: function(dataService) {
                     return dataService.getData("../js/json/bank.json");
                 }
             }
@@ -119,6 +119,13 @@
             }
         }
 
+        var allAppsState = {
+            name: 'data.apps',
+            url: '/data/apps/',
+            component: 'apps'
+        }
+
+
 
 
         $stateProvider.state(stateContent);
@@ -130,6 +137,7 @@
         $stateProvider.state(bookCashState);
         $stateProvider.state(bookMethodState);
         $stateProvider.state(bookBankState);
+        $stateProvider.state(allAppsState);
     };
 
 })();
