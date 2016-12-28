@@ -24,6 +24,7 @@
             vm.banks = vm.bank.banks;
             vm.validTime = validTime;
             vm.periodCheck = periodCheck;
+            vm.deleteItem = deleteItem;
 
             activate();
 
@@ -193,6 +194,13 @@
                 storageUpdater.updateItem("collectItems", vm.listIncasObj);
                 vm.listIncasObj = storageUpdater.getItem("collectItems");
 
+            }
+
+             function deleteItem(id) {
+                vm.listIncasObj.splice(id, 1);
+                //
+                storageUpdater.updateItem("collectItems", vm.listIncasObj);
+                vm.listIncasObj = storageUpdater.getItem("collectItems");
             }
 
             //валидация рабочих дней

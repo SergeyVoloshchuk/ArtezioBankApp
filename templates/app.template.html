@@ -120,20 +120,23 @@
 	</div>
 </form>
 </div>
-<div class="panel panel-default">
+<div ng-if="$ctrl.listIncasObj.length>0" class="panel panel-default">
 <div class="panel-heading">Добавленные объекты инкасации</div>
 <ul class="list-group">
-	<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item.timeGetCash}}</li>
+	<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item.servIt}} <button ng-click="$ctrl.deleteItem($index)"  class="btn btn-danger">Удалить</button></li>
 </ul>
 </div>
 <div class="panel panel-default">
 <!-- Default panel contents -->
-<div class="panel-heading">Объекты инкасации</div>
+
+
 <div class="panel-body">
 	<p>Добавьте объекты инкасации</p>
 </div>
 <!-- Добавление объектов -->
 <ul class="list-group">
+<button class="btn btn-info" data-toggle="collapse" data-target="#hide-me">Добавьте объект инкассации</button>
+<div id="hide-me" class="collapse">
 	<form ng-submit="$ctrl.addItem()" name="$ctrl.objForm" class="form-horizontal" novalidate>
 		<li class="list-group-item">
 			<div class="form-group">
@@ -350,5 +353,7 @@
 			</div>
 		</li>
 	</ul>
+
 </form>
+</div>
 </center>
