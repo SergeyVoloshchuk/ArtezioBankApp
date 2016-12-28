@@ -29,8 +29,8 @@
 ## Login and pass
 - Open terminal in your directory
 - admin: 
-   -login: "test"
-   -pass: "test"
+   - login: "test"
+   - pass: "test"
 - user: 
-   -login: "test2"
-   -pass: "test2"
+   - login: "test2"
+   - pass: "test2"
