@@ -2,7 +2,7 @@
 <html lang="en" ng-app="app">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>BankApp</title>
         <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -10,10 +10,10 @@
     </head>
     <body ng-controller="MainController as main">
         <nav class="navbar navbar-default navbar-fixed-top">
-            <a class="navbar-brand" href="#">WebApp</a>
+            <a class="navbar-brand" href="/">BankApp</a>
             <ul class="nav navbar-nav">
                 <li class="active"><a ui-sref="data.app" ui-sref-active="active">Заявка на инкасацию <span class="sr-only">(current)</span></a></li>
-                <li><a ui-sref="#" ui-sref-active="active">Login</a></li>
+                <li><a ui-sref="#" ui-sref-active="active">Заявки</a></li>
                 <li ng-if="main.person.role==1"  class="dropdown">
                     <a
                         class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справочники <span class="caret"></span></a>
@@ -62,7 +62,6 @@
         </nav>
         <div class="container">
             <div class="jumbotron">
-                
                 <ui-view>
                 </ui-view>
             </div>
@@ -84,7 +83,7 @@
         <script src="./js/compopents/bookCash.component.js"></script>
         <script src="./js/compopents/bookMethod.component.js"></script>
         <script src="./js/compopents/bookBank.component.js"></script>
-        
+        <script src="./js/services/directive.js"></script>
         
     </body>
 </html>

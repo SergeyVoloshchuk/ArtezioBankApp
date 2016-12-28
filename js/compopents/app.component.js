@@ -11,7 +11,7 @@
             bank: '<'
         },
         controller: function(storageUpdater) {
-            console.log("app component");
+
             var vm = this;
 
             vm.createApp = createApp;
@@ -22,13 +22,12 @@
             vm.codes = vm.code.codes;
             vm.methods = vm.method.methods;
             vm.banks = vm.bank.banks;
-
+            vm.validTime = validTime;
 
             activate();
 
             function activate() {
-                console.log("bookService activate");
-
+                console.log("app component");
                 //сохраняем в локальное хранилище если там ничего нет
                 if (localStorage.getItem("services") === null ||
                     localStorage.getItem("types") === null ||
@@ -97,6 +96,17 @@
             function addItem() {
                 vm.listIncasObj.push(vm.city);
             }
+
+            //валидация рабочих дней
+            function validTime(val) {
+                if (val === undefined || val === '') {
+                    return false;
+                } else {
+                    return true;
+                }
+
+            }
+
         }
     })
 })();

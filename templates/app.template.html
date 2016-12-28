@@ -1,11 +1,9 @@
 <center>
 <h1>Заявка на инкасацию</h1>
-<div class="form-group">
-</div>
 <form ng-submit="$ctrl.createApp()" name="$ctrl.appform" class="form-horizontal" novalidate>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Тип заявки</label>
-		<div class="col-sm-10">
+		<label  class="col-sm-3 control-label">Тип заявки</label>
+		<div class="col-sm-9">
 			<select ng-model="typeInp" name="typeInp" class="form-control" required>
 				<option></option>
 				<option ng-repeat="type in $ctrl.typeApps">{{type.name}}</option>
@@ -15,31 +13,23 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Имя уполномоченного сотрудник организации</label>
-		<div class="col-sm-10">
+		<label  class="col-sm-3 control-label">Имя уполномоченного сотрудник организации</label>
+		<div class="col-sm-9">
 			<input type="text" name="fioAndOrg" ng-model="$ctrl.fioAndOrg" class="form-control" placeholder="ФИО, Должность" required>
-		</div>
-		<span  ng-show="$ctrl.appform.fioAndOrg.$error.required" class="label label-warning"> Не указано имя уполномоченного сотрудника организации клиента для решения вопросов организации инкассации</span>
-	</div>
-	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Сдача наличности</label>
-		<div class="col-sm-10">
-			<select class="form-control" name="cashType" ng-model="$ctrl.cashType" required>
-				<option></option>
-				<option ng-repeat="item in $ctrl.methods">{{item.name}}</option>
-			</select>
-			<span  ng-show="$ctrl.appform.cashType.$error.required" class="label label-warning">Не указанп редпочитаемый способ сдачи денежной наличности для инкассации</span>
+			<span  ng-show="$ctrl.appform.fioAndOrg.$error.required" class="label label-warning"> Не указано имя уполномоченного сотрудника организации клиента
+			для решения вопросов организации инкассации</span>
 		</div>
 	</div>
+	
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Примечание</label>
-		<div class="col-sm-10">
+		<label  class="col-sm-3 control-label">Примечание</label>
+		<div class="col-sm-9">
 			<textarea rows="10" class="form-control" cols="45" placeholder="Примечание" name="text"></textarea>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Подразделение банка </label>
-		<div class="col-sm-10">
+		<label  class="col-sm-3 control-label">Подразделение банка </label>
+		<div class="col-sm-9">
 			<select ng-model="$ctrl.bankIt" name="bankIt" class="form-control" required>
 				<option></option>
 				<option ng-repeat="item in $ctrl.banks">{{item.name}}</option>
@@ -48,205 +38,310 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">ИНН/КИО</label>
-		<div class="col-sm-10">
-			<input  type="number" name="inn" ng-model="$ctrl.inn" min="5" max="12" class="form-control" id="mail" placeholder="ИНН/КИО" ng-pattern="/(5|10|12)/" required>
-			<span  ng-show="$ctrl.appform.inn.$error.min" class="label label-danger">Число слишком маленькое</span>
-			<span  ng-show="$ctrl.appform.inn.$error.pattern" class="label label-danger">Допустимы 5, 10 или 12</span>
-			<span ng-show="$ctrl.appform.inn.$error.max" class="label label-danger">Число слишком большое</span>
-			<span ng-show="$ctrl.appform.inn.$error.required" class="label label-warning">Задайте число (5, 10, 12)</span>
+		<label  class="col-sm-3 control-label">ИНН/КИО</label>
+		<div class="col-sm-9">
+			<input  type="number" name="inn" ng-model="$ctrl.inn" ng-maxlength="12"  class="form-control"  placeholder="ИНН/КИО" required>
+			<span ng-show="$ctrl.appform.inn.$error.maxlength" class="label label-danger">Ошибка заполения</span>
+			<span ng-show="$ctrl.appform.inn.$error.required" class="label label-warning">Не указан ИНН/КИО</span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">КПП</label>
-		<div class="col-sm-10">
-			<input  type="number" name="kpp" ng-model="$ctrl.kpp" ng-maxlength="9" ng-pattern="/[0-9]{9}$/" class="form-control" id="mail" placeholder="КПП">
+		<label  class="col-sm-3 control-label">КПП</label>
+		<div class="col-sm-9">
+			<input  type="number" name="kpp" ng-model="$ctrl.kpp" ng-maxlength="9" ng-pattern="/[0-9]{9}$/" class="form-control"  placeholder="КПП">
 			<span ng-show="$ctrl.appform.kpp.$error.pattern" class="label label-danger">Число в формате XXXXXXXXX где X - числа [0-9] </span>
 			<span ng-show="$ctrl.appform.kpp.$error.maxlength" class="label label-danger">Длина не должна превышать 9</span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Полное наименование организации</label>
-		<div class="col-sm-10">
-			<input type="text" name="fullNameOrg" ng-model="$ctrl.fullNameOrg" ng-maxlength="255" class="form-control" id="mail" placeholder="Полное наименование организации" required>
+		<label  class="col-sm-3 control-label">Полное наименование организации</label>
+		<div class="col-sm-9">
+			<input type="text" name="fullNameOrg" ng-model="$ctrl.fullNameOrg" ng-maxlength="255" class="form-control"  placeholder="Полное наименование организации" required>
 			<span ng-show="$ctrl.appform.fullNameOrg.$error.maxlength" class="label label-danger">Слишком длинное название</span>
 			<span ng-show="$ctrl.appform.fullNameOrg.$error.required" class="label label-warning">Заполните поле</span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Номер телефона,факса</label>
-		<div class="col-sm-10">
-			<input type="text" name="phoneForm" ng-model="$ctrl.phoneForm" ng-maxlength="255" class="form-control" id="mail" placeholder="Номер телефона,факса уполномоченного сотрудника организации клиента для решения вопросов организации инкассации" required>
+		<label  class="col-sm-3 control-label">Номер телефона,факса</label>
+		<div class="col-sm-9">
+			<input type="text" name="phoneForm" ng-model="$ctrl.phoneForm" ng-maxlength="255" class="form-control"  placeholder="Номер телефона,факса уполномоченного сотрудника организации клиента для решения вопросов организации инкассации" required>
 			<span ng-show="$ctrl.appform.phoneForm.$error.maxlength" class="label label-danger">Слишком длинное название</span>
 			<span ng-show="$ctrl.appform.phoneForm.$error.required" class="label label-warning">Не указан номер телефона уполномоченного сотрудникаорганизации клиентадля решения вопросов организациии нкассации</span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Номер счета зачисления</label>
-		<div class="col-sm-10">
-			<input type="number" name="numberItem"  min="0" ng-model="$ctrl.numberItem" ng-maxlength="20" class="form-control" id="mail" placeholder="Номер счета клиента в банке, на который требуется зачислить инкассированные денежные средства" required>
+		<label  class="col-sm-3 control-label">Номер счета зачисления</label>
+		<div class="col-sm-9">
+			<input type="number" name="numberItem"  min="0" ng-model="$ctrl.numberItem" ng-maxlength="20" class="form-control"  placeholder="Номер счета клиента в банке, на который требуется зачислить инкассированные денежные средства" required>
 			<span ng-show="$ctrl.appform.numberItem.$error.maxlength" class="label label-danger">Слишком длинный счёт</span>
 			<span ng-show="$ctrl.appform.numberItem.$error.required" class="label label-warning">Не указан номер счета зачисления</span>
 			<span ng-show="$ctrl.appform.numberItem.$error.min" class="label label-warning">Число не может быть меньше 0</span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">БИК</label>
-		<div class="col-sm-10">
-			<input  type="number" name="bik" min="0" ng-model="$ctrl.bik" ng-maxlength="9" class="form-control" id="mail" placeholder="БИК банка, в который требуется инкассировать денежные средства" required>
+		<label  class="col-sm-3 control-label">БИК</label>
+		<div class="col-sm-9">
+			<input  type="number" name="bik" min="0" ng-model="$ctrl.bik" ng-maxlength="9" class="form-control"  placeholder="БИК банка, в который требуется инкассировать денежные средства" required>
 			<span ng-show="$ctrl.appform.numberItem.$error.maxlength" class="label label-danger">Слишком длинный счёт</span>
 			<span ng-show="$ctrl.appform.numberItem.$error.required" class="label label-warning">Не указан номер счета зачисления</span>
 			<span ng-show="$ctrl.appform.numberItem.$error.min" class="label label-warning">Число не может быть меньше 0</span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mail" class="col-sm-2 control-label">Номер корр. счета банка</label>
-		<div class="col-sm-10">
-			<input  type="number" name="numberCorrect" min="0" ng-model="$ctrl.numberCorrect" ng-maxlength="20" class="form-control" id="mail" placeholder="Счет и реквизиты банка, на который производится перечисление проинкассированных средств " required>
+		<label  class="col-sm-3 control-label">Номер корр. счета банка</label>
+		<div class="col-sm-9">
+			<input  type="number" name="numberCorrect" min="0" ng-model="$ctrl.numberCorrect" ng-maxlength="20" class="form-control"  placeholder="Счет и реквизиты банка, на который производится перечисление проинкассированных средств " required>
 			<span ng-show="$ctrl.appform.numberCorrect.$error.maxlength" class="label label-danger">Слишком длинный счёт</span>
 			<span ng-show="$ctrl.appform.numberCorrect.$error.required" class="label label-warning">Не указан номер корр. счета банка</span>
 			<span ng-show="$ctrl.appform.numberCorrect.$error.min" class="label label-warning">Число не может быть меньше 0</span>
 		</div>
 	</div>
-	
-		<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">SWIFT</label>
+		<div class="col-sm-9">
+			<input  type="text" name="numberSwift" min="0" ng-minlength="8" ng-model="$ctrl.numberSwift" ng-maxlength="11" class="form-control"  placeholder="SWIFT банка, в который требуется инкассировать денежные средства " required>
+			<span ng-show="$ctrl.appform.numberSwift.$error.maxlength" class="label label-danger">Значение превышено</span>
+			<span ng-show="$ctrl.appform.numberSwift.$error.minlength" class="label label-danger">Значение слишком мало</span>
+			<span ng-show="$ctrl.appform.numberSwift.$error.required" class="label label-warning">Не указан SWIFT</span>
+			<span ng-show="$ctrl.appform.numberSwift.$error.min" class="label label-warning">Число не может быть меньше 0</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Иные реквизиты банка зачисления валюты</label>
+		<div class="col-sm-9">
+			<input  type="text" name="otherRec" ng-model="$ctrl.otherRec" ng-maxlength="255" class="form-control"  placeholder="Указывается дополнительная информация ">
+			<span ng-show="$ctrl.appform.otherRec.$error.maxlength" class="label label-danger">Значение превышено</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-9">
 			<button type="submit" ng-disabled="$ctrl.appform.$invalid" class="btn btn-success">Подтвердить</button>
 		</div>
 	</div>
 </form>
-
 </div>
-	<div class="panel panel-default">
-	<div class="panel-heading">Добавленные объекты инкасации</div>
-		<ul class="list-group">
-			<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item}}</li>
-		</ul>
-	</div>
+<div class="panel panel-default">
+<div class="panel-heading">Добавленные объекты инкасации</div>
+<ul class="list-group">
+	<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item}}</li>
+</ul>
+</div>
+<div class="panel panel-default">
+<!-- Default panel contents -->
+<div class="panel-heading">Объекты инкасации</div>
+<div class="panel-body">
+	<p>Добавьте объекты инкасации</p>
+</div>
+<!-- List group -->
+<ul class="list-group">
+	<form ng-submit="$ctrl.$ctrl.addItem()" name="$ctrl.objForm" class="form-horizontal" novalidate>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Желательное время сдачи наличных (самостоятельно)/ время прибытия инкассаторов</label>
+				<div class="col-sm-9">
+					<input type="text" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" name="timeGetCash" ng-model="$ctrl.timeGetCash" class="form-control" placeholder="ЧЧ:ММ" required>
+					<span ng-show="$ctrl.objForm.timeGetCash.$error.required" class="label label-warning">Не указано время</span>
+					<span ng-show="$ctrl.objForm.timeGetCash.$error.pattern" class="label label-danger">Не корректное время</span>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Сдача наличности</label>
+				<div class="col-sm-9">
+					<select class="form-control" name="cashType" ng-model="$ctrl.cashType" required>
+						<option></option>
+						<option ng-repeat="item in $ctrl.methods">{{item.name}}</option>
+					</select>
+					<span  ng-show="$ctrl.objForm.cashType.$error.required" class="label label-warning">Не указан редпочитаемый способ сдачи денежной наличности для инкассации</span>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Периодичность оказания инкассаторских услуг</label>
+				<div class="col-sm-9">
+					<select class="form-control" ng-pattern="/(День недели)/" name="periodServ" ng-model="$ctrl.periodServ" required>
+						<option ng-repeat="item in $ctrl.periods">{{item.name}}</option>
+					</select>
+					<span  ng-show="$ctrl.objForm.periodServ.$error.required" class="label label-warning">Не указан период оказания инкассаторских услуг </span>
+					
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">День недели</label>
+				<div class="col-sm-9">
+					<input type="text" name="day" ng-model="$ctrl.day" class="form-control" placeholder="День недели, выбираемый для оказания услуг по объекту инкассации" ng-required="!$ctrl.objForm.periodServ.$error.pattern" ng-disabled="$ctrl.objForm.periodServ.$error.pattern">
+					<span ng-show="$ctrl.objForm.day.$error.required" class="label label-warning">День недели, выбираемый для оказания услуг по объекту инкассации </span>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Предполагаемый объем денежной наличности для инкассации</label>
+				<div class="col-sm-9">
+					<input type="number" name="cashLen" ng-model="$ctrl.cashLen" class="form-control" placeholder="Сумма предназначенная клиентом к инкассации. М.б. как в рублях так и в ин. валюте" required>
+					<span  ng-show="$ctrl.objForm.cashLen.$error.required" class="label label-warning">Не указан предполагаемый объем денежной наличности для инкассации</span>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Руководитель объекта</label>
+				<div class="col-sm-9">
+					<input type="text" ng-maxlength="255" name="mainPepCont" ng-model="$ctrl.mainPepCont" class="form-control" placeholder="Контактный телефон руководителя точки юр. лица, по которой подразделение инкассации производит инкассацию" required>
+					<span  ng-show="$ctrl.objForm.mainPepCont.$error.required" class="label label-warning">Не указан нонтактный телефон руководителя</span>
+					<span  ng-show="$ctrl.objForm.mainPepCont.$error.maxlength" class="label label-warning">Превышен предел символов</span>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Желательная дата начала обслуживания\Дата открытия торговой точки</label>
+				<div class="col-sm-9">
+					<input type="text" name="dateWork" ng-maxlength="10" ng-pattern="/([0-2]\d|3[01])\.(0\d|1[012])\.(\d{4})/" ng-model="$ctrl.dateWork" class="form-control"  placeholder="дд.мм.гггг" required>
+					<span  ng-show="$ctrl.objForm.dateWork.$error.required" class="label label-warning">Укажите дату начала обслуживания</span>
+					<span  ng-show="$ctrl.objForm.dateWork.$error.pattern" class="label label-danger">Задайте дату в формате дд.мм.гггг </span>
+					<span  ng-show="$ctrl.objForm.dateWork.$error.maxlength" class="label label-danger">Некорректная дата</span>
+					
+				</div>
+				
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Режим работы объекта инкассации</label>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Рабочие дни</label>
+				<div class="col-sm-9">
+					<input type="text" name="workdayFirst" ng-model="$ctrl.workdayFirst" class="form-control"  placeholder="С" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-change="flag2 = $ctrl.validTime($ctrl.workdayFirst)" ng-init="flag" ng-required="flag1">
+					<span  ng-show="$ctrl.objForm.workdayFirst.$error.required" class="label label-warning">Заполните поле</span>
+					<span  ng-show="$ctrl.objForm.workdayFirst.$error.pattern" class="label label-danger">Задайте время в формате чч:мм </span>
+					<input type="text" name="workdaySecond" ng-init="flag2" ng-change="flag1 = $ctrl.validTime($ctrl.workdaySecond)" ng-model="$ctrl.workdaySecond" class="form-control"  placeholder="До" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-required="flag2">
+					<span  ng-show="$ctrl.objForm.workdaySecond.$error.required" class="label label-warning">Заполните поле</span>
+					<span  ng-show="$ctrl.objForm.workdaySecond.$error.pattern" class="label label-danger">Задайте время в формате чч:мм </span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Суббота</label>
+				<div class="col-sm-9">
+					<input type="text" name="saturdayFirst" ng-init="flag3" ng-model="$ctrl.saturdayFirst" class="form-control"  placeholder="С" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-change="flag4 = $ctrl.validTime($ctrl.saturdayFirst)" ng-required="flag3">
+					<span  ng-show="$ctrl.objForm.saturdayFirst.$error.required" class="label label-warning">Заполните поле</span>
+					<span  ng-show="$ctrl.objForm.saturdayFirst.$error.pattern" class="label label-danger">Задайте время в формате чч:мм </span>
+					<input type="text" name="saturdaySecond" ng-init="flag4" ng-change="flag3 = $ctrl.validTime($ctrl.saturdaySecond)" ng-model="$ctrl.saturdaySecond" class="form-control"  placeholder="До" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-required="flag4">
+					<span  ng-show="$ctrl.objForm.saturdaySecond.$error.required" class="label label-warning">Заполните поле</span>
+					<span  ng-show="$ctrl.objForm.saturdaySecond.$error.pattern" class="label label-danger">Задайте время в формате чч:мм </span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Воскресенье</label>
+				<div class="col-sm-9">
+					<input type="text" name="sundayFirst" ng-init="flag5" ng-model="$ctrl.sundayFirst" class="form-control"  placeholder="С" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-change="flag6 = $ctrl.validTime($ctrl.sundayFirst)" ng-required="flag5">
+					<span  ng-show="$ctrl.objForm.sundayFirst.$error.required" class="label label-warning">Заполните поле</span>
+					<span  ng-show="$ctrl.objForm.sundayFirst.$error.pattern" class="label label-danger">Задайте время в формате чч:мм </span>
+					<input type="text" name="sundaySecond" ng-init="flag6" ng-change="flag5 = $ctrl.validTime($ctrl.saturdaySecond)" ng-model="$ctrl.sundaySecond" class="form-control"  placeholder="До" ng-pattern="/^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$/" ng-required="flag6">
+					<span  ng-show="$ctrl.objForm.sundaySecond.$error.required" class="label label-warning">Заполните поле</span>
+					<span  ng-show="$ctrl.objForm.sundaySecond.$error.pattern" class="label label-danger">Задайте время в формате чч:мм </span>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Тип населенного пункта</label>
+				<div class="col-sm-9">
+					<select name="typeCity" class="form-control" ng-model="$ctrl.typeCity">
+						<option></option>
+						<option value="01">город</option>
+						<option value="02">поселок</option>
+						<option value="03">село</option>
+						<option value="04">станица</option>
+						<option value="05">поселок городского типа</option>
+						<option value="06">аул</option>
+						<option value="07">рабочий поселок</option>
+						<option value="09">кордон</option>
+					</select>
+					
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Адрес</label>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Тип адреса</label>
+				<div class="col-sm-9">
+					<select name="typeAdress" class="form-control" ng-model="$ctrl.typeAdress" required>
+						<option selected value="01" >юридический адрес (по умолчанию)</option>
+						<option value="02">международный адрес</option>
+						<option value="03">фактический адрес </option>
+						<option value="04">почтовый адрес</option>
+						<option value="05">юридический адрес(ЕГРЮЛ/ЕГРИП)</option>
+						<option value="06">Адрес регистрации физлица</option>
+						<option value="07">Адрес фактического проживания физлица</option>
+						<option value="08">Адрес рождения физлица</option>
+					</select>
+					<span ng-show="$ctrl.objForm.typeAdress.$error.required" class="label label-warning">Не указан тип адреса</span>
+					
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Наименование населенного пункта </label>
+				<div class="col-sm-9">
+					<input type="text" name="nameCityPoint" ng-maxlength="100" ng-model="$ctrl.nameCityPoint" class="form-control"  placeholder="Наименование населенного пункта, в котором находится объект инкассации">
+					
+					<span  ng-show="$ctrl.objForm.nameCityPoint.$error.maxlength" class="label label-danger">Превысили допустимый предел </span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Улица</label>
+				<div class="col-sm-9">
+					<input type="text" name="street" ng-maxlength="100" ng-model="$ctrl.street" class="form-control"  placeholder="Улица, по которой находится объект инкассации">
+					
+					<span  ng-show="$ctrl.objForm.street.$error.maxlength" class="label label-danger">Превысили допустимый предел </span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Номер дома (владение)</label>
+				<div class="col-sm-9">
+					<input type="text" name="numberHouse" ng-maxlength="20" ng-model="$ctrl.numberHouse" class="form-control"  placeholder="Номер дома (владение), в котором находится объект инкассации">
+					
+					<span  ng-show="$ctrl.objForm.numberHouse.$error.maxlength" class="label label-danger">Превысили допустимый предел </span>
+				</div>
+			</div>
 
-
-	<div class="panel panel-default">
-		<!-- Default panel contents -->
-		<div class="panel-heading">Объекты инкасации</div>
-		<div class="panel-body">
-			<p>Добавьте объекты инкасации</p>
-		</div>
-		<!-- List group -->
+				<div class="form-group">
+				<label  class="col-sm-3 control-label">Корпус (строение)</label>
+				<div class="col-sm-9">
+					<input type="text" name="corpusHouse" ng-maxlength="20" ng-model="$ctrl.corpusHouse" class="form-control"  placeholder="Корпус (строение), в котором находится объект инкассации">
+					
+					<span  ng-show="$ctrl.objForm.corpusHouse.$error.maxlength" class="label label-danger">Превысили допустимый предел </span>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group">
+				<label  class="col-sm-3 control-label">Услуга</label>
+				<div class="col-sm-9">
+					<select name="servIt" ng-model="$ctrl.servIt" class="form-control" required>
+						<option></option>
+						<option ng-repeat="item in $ctrl.services">{{item.name}}</option>
+					</select>
+					<span ng-show="$ctrl.objForm.servIt.$error.required" class="label label-warning">Не указана предпочетаемая инкасаторская услуга</span>
+				</div>
+			</div>
+		</li>
 		
-		<ul class="list-group">
-		<form ng-submit="$ctrl.$ctrl.addItem()" name="$ctrl.objForm" class="form-horizontal" novalidate>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Адрес</label>
-					<div class="col-sm-10">
-						<input type="text" ng-model="$ctrl.city" class="form-control" id="mail" placeholder="Город">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="Населённый пункт">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="Улица">
-					</div>
+		<li class="list-group-item">
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-9">
+					<button type="submit" ng-disabled="$ctrl.objForm.$invalid" class="btn btn-success">Добавить</button>
 				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Услуга</label>
-					<div class="col-sm-10">
-						<select ng-model="$ctrl.serv" class="form-control">
-							<option></option>
-							<option ng-repeat="item in $ctrl.services">{{item.name}}</option>
-						</select>
-						<span ng-show="$ctrl.appform.serv.$error.maxlength" class="label label-danger">Слишком длинное название</span>
-						<span ng-show="$ctrl.appform.serv.$error.required" class="label label-warning">Не указана предпочетаемая инкасаторская услуга</span>
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Режим работы</label>
-					<div class="col-sm-10">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="С">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="До">
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Режим работы объекта инкассации</label>
-					<div class="col-sm-10">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="С">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="До">
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Желательное время прибытия инкассаторов на объект</label>
-					<div class="col-sm-10">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="С">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="До">
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Периодичность оказания инкассаторских услуг</label>
-					<div class="col-sm-10">
-						<select class="form-control">
-							<option></option>
-							<option ng-repeat="item in $ctrl.periods">{{item.name}}</option>
-						</select>
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">День недели</label>
-					<div class="col-sm-10">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="День недели">
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Предполагаемый объем денежной наличности для инкассации</label>
-					<div class="col-sm-10">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="Предполагаемый объем денежной наличности для инкассации">
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Руководитель объекта</label>
-					<div class="col-sm-10">
-						<input type="email" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="Руководитель объекта">
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Желательная дата начала обслуживания\Дата открытия торговой точки</label>
-					<div class="col-sm-10">
-						<input type="date" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="Дата">
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group">
-					<label for="mail" class="col-sm-2 control-label">Касса объекта</label>
-					<div class="col-sm-10">
-						<input type="text" ng-model="$ctrl.type" class="form-control" id="mail" placeholder="Касса объекта">
-					</div>
-				</div>
-			</li>
-
-			<li class="list-group-item">
-		<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" ng-disabled="$ctrl.appform.$invalid" class="btn btn-success">Добавить</button>
-		</div>
-	</div>
-	</li>
-		</ul>
-
+			</div>
+		</li>
+	</ul>
 </form>
-	
-
 </center>
