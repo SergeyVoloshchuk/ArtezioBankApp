@@ -27,7 +27,6 @@
 - Type `node bin/http-server`
 
 ## Login and pass
-- Open terminal in your directory
 - admin: 
    - login: "test"
    - pass: "test"
