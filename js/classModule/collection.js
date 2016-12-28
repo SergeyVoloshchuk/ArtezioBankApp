@@ -34,9 +34,10 @@ var CollectionObj = function(timeGetCash, cashType, periodServ, day, cashLen, ma
     this.idPerson = idPerson;
 };
 
-var CollectionApp = function(typeInp, otherText, bankIt, inn, kpp, fullNameOrg, phoneForm, numberItem,
+var CollectionApp = function(typeInp, fioAndOrg, otherText, bankIt, inn, kpp, fullNameOrg, phoneForm, numberItem,
     bik, numberCorrect, numberSwift, otherRec, collectionObjs, id, idPerson, date, number) {
     this.typeInp = typeInp;
+    this.fioAndOrg = fioAndOrg;
     this.otherText = otherText;
     this.bankIt = bankIt;
 

@@ -4,7 +4,7 @@
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Тип заявки</label>
 		<div class="col-sm-9">
-			<select ng-model="typeInp" name="typeInp" class="form-control" required>
+			<select ng-model="$ctrl.typeInp" name="typeInp" class="form-control" required>
 				<option></option>
 				<option ng-repeat="type in $ctrl.typeApps">{{type.name}}</option>
 			</select>

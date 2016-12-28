@@ -29,10 +29,10 @@
 				<td> {{item.typeInp}}	
 				</td>
 				
-				
+
 				<td>
-					<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.updateItem(item,item.name ,$index)" type="button" class="btn btn-default">Сохранить</button>
-					<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.back()" type="button" class="btn btn-default">Отменить</button>
+
+				
 					<div class="btn-group unvisual-{{$ctrl.inpFlag}}">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Действие <span class="caret"></span></button>
 						<ul class="dropdown-menu" role="menu">
@@ -41,12 +41,138 @@
 						</ul>
 					</div>
 					
-					
+
 				</tbody>
 			</table>
 			
 			
-			
+			<center>
+			<div ng-show="$ctrl.inpFlag" class="panel panel-default">
+<div class="panel-heading"><h4>Заявка на инкасацию [{{$ctrl.id}}]</h4></div>
+
+<form ng-submit="$ctrl.updateItem()" name="$ctrl.appform" class="form-horizontal" novalidate>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Тип заявки</label>
+		<div class="col-sm-9">
+			<select ng-model="$ctrl.typeInp" name="typeInp" class="form-control" required>
+				<option></option>
+				<option ng-repeat="type in $ctrl.typeApps">{{type.name}}</option>
+			</select>
+			<span ng-show="$ctrl.appform.typeInp.$error.required" class="label label-warning">Не указан тип
+			заявки</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Имя уполномоченного сотрудник организации</label>
+		<div class="col-sm-9">
+			<input type="text" name="fioAndOrg" ng-model="$ctrl.fioAndOrg" class="form-control" placeholder="ФИО, Должность" required>
+			<span  ng-show="$ctrl.appform.fioAndOrg.$error.required" class="label label-warning"> Не указано имя уполномоченного сотрудника организации клиента
+			для решения вопросов организации инкассации</span>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Примечание</label>
+		<div class="col-sm-9">
+			<textarea rows="10" name="otherText" ng-model="$ctrl.otherText" class="form-control" cols="45" placeholder="Примечание" name="text"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Подразделение банка </label>
+		<div class="col-sm-9">
+			<select ng-model="$ctrl.bankIt" name="bankIt" class="form-control" required>
+				<option></option>
+				<option ng-repeat="item in $ctrl.banks">{{item.name}}</option>
+			</select>
+			<span ng-show="$ctrl.appform.bankIt.$error.required" class="label label-warning"> Не указано подразделение банка</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">ИНН/КИО</label>
+		<div class="col-sm-9">
+			<input  type="number" name="inn" ng-model="$ctrl.inn" ng-maxlength="12"  class="form-control"  placeholder="ИНН/КИО" required>
+			<span ng-show="$ctrl.appform.inn.$error.maxlength" class="label label-danger">Ошибка заполения</span>
+			<span ng-show="$ctrl.appform.inn.$error.required" class="label label-warning">Не указан ИНН/КИО</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">КПП</label>
+		<div class="col-sm-9">
+			<input  type="number" name="kpp" ng-model="$ctrl.kpp" ng-maxlength="9" ng-pattern="/[0-9]{9}$/" class="form-control"  placeholder="КПП">
+			<span ng-show="$ctrl.appform.kpp.$error.pattern" class="label label-danger">Число в формате XXXXXXXXX где X - числа [0-9] </span>
+			<span ng-show="$ctrl.appform.kpp.$error.maxlength" class="label label-danger">Длина не должна превышать 9</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Полное наименование организации</label>
+		<div class="col-sm-9">
+			<input type="text" name="fullNameOrg" ng-model="$ctrl.fullNameOrg" ng-maxlength="255" class="form-control"  placeholder="Полное наименование организации" required>
+			<span ng-show="$ctrl.appform.fullNameOrg.$error.maxlength" class="label label-danger">Слишком длинное название</span>
+			<span ng-show="$ctrl.appform.fullNameOrg.$error.required" class="label label-warning">Заполните поле</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Номер телефона,факса</label>
+		<div class="col-sm-9">
+			<input type="text" name="phoneForm" ng-model="$ctrl.phoneForm" ng-maxlength="255" class="form-control"  placeholder="Номер телефона,факса уполномоченного сотрудника организации клиента для решения вопросов организации инкассации" required>
+			<span ng-show="$ctrl.appform.phoneForm.$error.maxlength" class="label label-danger">Слишком длинное название</span>
+			<span ng-show="$ctrl.appform.phoneForm.$error.required" class="label label-warning">Не указан номер телефона уполномоченного сотрудникаорганизации клиентадля решения вопросов организациии нкассации</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Номер счета зачисления</label>
+		<div class="col-sm-9">
+			<input type="number" name="numberItem"  min="0" ng-model="$ctrl.numberItem" ng-maxlength="20" class="form-control"  placeholder="Номер счета клиента в банке, на который требуется зачислить инкассированные денежные средства" required>
+			<span ng-show="$ctrl.appform.numberItem.$error.maxlength" class="label label-danger"> Количество символов в поле Счет не соответствует норме (20)</span>
+			<span ng-show="$ctrl.appform.numberItem.$error.required" class="label label-warning"> Не указан счет для перечисления инкассированных средств</span>
+			<span ng-show="$ctrl.appform.numberItem.$error.min" class="label label-danger">Количество символов в поле Счет не соответствует норме (20)</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">БИК</label>
+		<div class="col-sm-9">
+			<input  type="number" name="bik" min="0" ng-model="$ctrl.bik" ng-maxlength="9" class="form-control"  placeholder="БИК банка, в который требуется инкассировать денежные средства" required>
+			<span ng-show="$ctrl.appform.numberItem.$error.maxlength" class="label label-danger">Слишком длинный счёт</span>
+			<span ng-show="$ctrl.appform.numberItem.$error.required" class="label label-warning">Не указан номер счета зачисления</span>
+			<span ng-show="$ctrl.appform.numberItem.$error.min" class="label label-warning">Число не может быть меньше 0</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Номер корр. счета банка</label>
+		<div class="col-sm-9">
+			<input  type="number" name="numberCorrect" min="0" ng-model="$ctrl.numberCorrect" ng-maxlength="20" class="form-control"  placeholder="Счет и реквизиты банка, на который производится перечисление проинкассированных средств " required>
+			<span ng-show="$ctrl.appform.numberCorrect.$error.maxlength" class="label label-danger">Слишком длинный счёт</span>
+			<span ng-show="$ctrl.appform.numberCorrect.$error.required" class="label label-warning">Не указан номер корр. счета банка</span>
+			<span ng-show="$ctrl.appform.numberCorrect.$error.min" class="label label-warning">Число не может быть меньше 0</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">SWIFT</label>
+		<div class="col-sm-9">
+			<input  type="text" name="numberSwift" min="0" ng-minlength="8" ng-model="$ctrl.numberSwift" ng-maxlength="11" class="form-control"  placeholder="SWIFT банка, в который требуется инкассировать денежные средства " required>
+			<span ng-show="$ctrl.appform.numberSwift.$error.maxlength" class="label label-danger">Значение превышено</span>
+			<span ng-show="$ctrl.appform.numberSwift.$error.minlength" class="label label-danger">Значение слишком мало</span>
+			<span ng-show="$ctrl.appform.numberSwift.$error.required" class="label label-warning">Не указан SWIFT</span>
+			<span ng-show="$ctrl.appform.numberSwift.$error.min" class="label label-warning">Число не может быть меньше 0</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label  class="col-sm-3 control-label">Иные реквизиты банка зачисления валюты</label>
+		<div class="col-sm-9">
+			<input  type="text" name="otherRec" ng-model="$ctrl.otherRec" ng-maxlength="255" class="form-control"  placeholder="Указывается дополнительная информация ">
+			<span ng-show="$ctrl.appform.otherRec.$error.maxlength" class="label label-danger">Значение превышено</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-9">
+			<button type="submit" ng-disabled="$ctrl.appform.$invalid" class="btn btn-success">Сохранить</button>
+						<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.back()" type="button" class="btn btn-default">Отменить</button>
+		</div>
+	</div>
+</form>
+</div>
+</div>
+</center>
 			
 			
 		</div>

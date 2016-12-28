@@ -92,7 +92,7 @@
                 var person = storageUpdater.getItem("person");
                 var idPerson = person.id;
 
-                var itemApp = new CollectionApp(vm.appform.typeInp.$modelValue, vm.appform.otherText.$modelValue, vm.appform.bankIt.$modelValue,
+                var itemApp = new CollectionApp(vm.appform.typeInp.$modelValue, vm.appform.fioAndOrg.$modelValue,vm.appform.otherText.$modelValue, vm.appform.bankIt.$modelValue,
                     vm.appform.inn.$modelValue, vm.appform.kpp.$modelValue, vm.appform.fullNameOrg.$modelValue,
                     vm.appform.phoneForm.$modelValue, vm.appform.numberItem.$modelValue, vm.appform.bik.$modelValue,
                     vm.appform.numberCorrect.$modelValue, vm.appform.numberSwift.$modelValue, vm.appform.otherRec.$modelValue,

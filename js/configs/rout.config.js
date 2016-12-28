@@ -122,7 +122,27 @@
         var allAppsState = {
             name: 'data.apps',
             url: '/data/apps/',
-            component: 'apps'
+            component: 'apps',
+            resolve: {
+                types: function(dataService) {
+                    return dataService.getData("../js/json/types.json");
+                },
+                service: function(dataService) {
+                    return dataService.getData("../js/json/services.json");
+                },
+                period: function(dataService) {
+                    return dataService.getData("../js/json/period.json");
+                },
+                code: function(dataService) {
+                    return dataService.getData("../js/json/codesCash.json");
+                },
+                method: function(dataService) {
+                    return dataService.getData("../js/json/method.json");
+                },
+                bank: function(dataService) {
+                    return dataService.getData("../js/json/bank.json");
+                }
+            }
         }
 
 
