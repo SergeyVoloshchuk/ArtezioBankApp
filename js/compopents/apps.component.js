@@ -47,7 +47,7 @@
                     for (var i = 0; i < collectAppsAll.length; i++) {
                         if (collectAppsAll[i].idPerson === person.id && person.role !== 1) {
 
-                            vm.collectApps[i] = collectAppsAll[i];
+                            vm.collectApps.push(collectAppsAll[i]);
 
                         }
                         if (person.role === 1) {
@@ -71,7 +71,7 @@
                 vm.id = vm.collectApps[index].id;
                 vm.fioAndOrg = vm.collectApps[index].fioAndOrg;
                 vm.typeInp = vm.collectApps[index].typeInp;
-                vm.otherText = vm.collectApps[index].otherText;
+                vm.other;Text = vm.collectApps[index].otherText;
                 vm.bankIt = vm.collectApps[index].bankIt;
                 vm.inn = vm.collectApps[index].inn;
                 vm.kpp = vm.collectApps[index].kpp;
