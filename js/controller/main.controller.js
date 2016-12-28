@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('app').controller('MainController', MainController);
-    MainController.$inject = ['dataService', 'loginService'];
+    MainController.$inject = ['dataService', 'loginService','storageUpdater','$location'];
 
-    function MainController(dataService, loginService, storageUpdater) {
+    function MainController(dataService, loginService, storageUpdater,$location) {
         var vm = this;
         vm.submit = submit;
         vm.logout = logout;
@@ -24,7 +24,9 @@
             vm.isLogin = false;
             localStorage.removeItem("person");
             localStorage.removeItem("isLogin");
-            vm.person = null;
+            activate();
+            $location.path("/");
+
         }
 
         function submit() {

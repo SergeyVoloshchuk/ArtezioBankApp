@@ -12,14 +12,14 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <a class="navbar-brand" href="/">BankApp</a>
             <ul class="nav navbar-nav">
-                <li class="active"><a ui-sref="data.app" ui-sref-active="active">Заявка на инкасацию <span class="sr-only">(current)</span></a></li>
-                <li><a ui-sref="data.apps" ui-sref-active="active">Заявки</a></li>
-                <li ng-if="main.person.role==1"  class="dropdown">
-                    <a
-                        class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справочники <span class="caret"></span></a>
+                <li class="active"><a ng-if="main.isLogin" ui-sref="data.app" ui-sref-active="active">Заявка на инкасацию <span class="sr-only">(current)</span></a></li>
+                <li><a ng-if="main.isLogin" ui-sref="data.apps" ui-sref-active="active">Заявки</a></li>
+
+                <li  class="dropdown">
+                    <a ng-if="main.person.role==1&&main.isLogin" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справочники <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             
-                            <li><a ui-sref="data.booktype" ui-sref-active="active">Типы заявки на инкассацию</a></li>
+                            <li><a  ui-sref="data.booktype" ui-sref-active="active">Типы заявки на инкассацию</a></li>
                             <li ><a ui-sref="data.bookservice" ui-sref-active="active">Справочник инкассаторских услуг</a></li>
                                <li ><a ui-sref="data.bookperiod" ui-sref-active="active"> Периодичность оказания инкассаторских услуг</a></li>
                                  <li ><a ui-sref=" data.bookcash" ui-sref-active="active">Коды валют</a></li>

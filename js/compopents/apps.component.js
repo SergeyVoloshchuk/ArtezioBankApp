@@ -2,10 +2,10 @@
     'use strict';
     angular.module('app.components').component('apps', {
         templateUrl: '../templates/apps.template.html',
-    
+
         controller: function(storageUpdater) {
             var vm = this;
-            vm.collectApps = {} ;
+            //  vm.collectApps = [] ;
             vm.deleteItem = deleteItem;
             vm.goUpdateItem = goUpdateItem;
             vm.updateItem = updateItem;
@@ -16,22 +16,38 @@
             function activate() {
                 console.log("collectApps activate");
 
-                //сохраняем в локальное хранилище если там ничего нет
-                if (localStorage.getItem("collectApps") === null) {
-                    storageUpdater.updateItem("collectApps", collectApps);
-                    vm.periods = storageUpdater.getItem("collectApps");
+                // если там ничего нет
+                if (localStorage.getItem("collectApps") === null || localStorage.getItem("collectApps") === "[]") {
+
+                    vm.nullTable = true;
 
                 } else {
-                    vm.collectApps = storageUpdater.getItem("collectApps");
-                    console.log(vm.collectApps[0]);
+                    vm.collectApps = [];
+                    var collectAppsAll = storageUpdater.getItem("collectApps");
+                    vm.nullTable = false;
+
+                    //выводить будем только те, которые создал пользователь(исключение админ.)
+                     var person = storageUpdater.getItem("person");
+                    for(var i=0;i<collectAppsAll.length;i++ ){
+                        if(collectAppsAll[i].idPerson === person.id && person.role !== 1){
+
+                         vm.collectApps[i] = collectAppsAll[i];
+
+                        }
+                      if(person.role === 1){
+                             vm.collectApps = collectAppsAll;
+                        }
+                    }
+
                 }
             }
 
             function deleteItem(id) {
-                vm.periods.splice(id, 1);
+                vm.collectApps.splice(id, 1);
                 //
-                storageUpdater.updateItem("period", vm.periods);
-                vm.periods = storageUpdater.getItem("period");
+                storageUpdater.updateItem("collectApps", vm.collectApps);
+                vm.collectApps = storageUpdater.getItem("collectApps");
+                activate();
             }
 
             function goUpdateItem(index) {
@@ -51,6 +67,7 @@
             function back() {
                 vm.inpFlag = false;
             }
+
             function add() {
                 var item = {};
                 item.id = vm.periods[vm.periods.length - 1].id + 1;
