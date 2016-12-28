@@ -3,10 +3,11 @@
   "description": "",
   "main": "index.js",
   "authors": [
-    "SergeyVoloshchuk <sergeyvolochuc@gmail.com>"
+    "Voloshchuk Sergey <sergeyvolochuc@gmail.com>"
   ],
   "license": "ISC",
   "homepage": "https://github.com/SergeyVoloshchuk/ArtezioBankApp",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
@@ -15,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
+    "angular-smart-table": "^2.1.8",
     "bootstrap": "^3.3.7"
   }
 }
