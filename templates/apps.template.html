@@ -8,6 +8,12 @@
 	</div>
 	<!-- Table -->
 
+
+	 <div class="col-sm-9">
+			<input placeholder="Поиск по дате" text" ng-model="search" class="form-control" >
+	
+		</div>
+
 	<table ng-if="!$ctrl.nullTable" class="table">
 		<thead>
 			<tr>
@@ -19,7 +25,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in $ctrl.collectApps">
+			<tr ng-repeat="item in $ctrl.collectApps |filter:{date:search}">
 				<td>{{item.id}}</td>
 				<td> {{item.number}}</td>
 				<td> {{item.date}}</td>
