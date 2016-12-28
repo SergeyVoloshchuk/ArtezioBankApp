@@ -25,6 +25,7 @@
             vm.validTime = validTime;
             vm.periodCheck = periodCheck;
             vm.deleteItem = deleteItem;
+            vm.copyItem = copyItem;
 
             activate();
 
@@ -93,11 +94,11 @@
                 var person = storageUpdater.getItem("person");
                 var idPerson = person.id;
 
-                var itemApp = new CollectionApp(vm.appform.typeInp.$modelValue, vm.appform.fioAndOrg.$modelValue,vm.appform.otherText.$modelValue, vm.appform.bankIt.$modelValue,
+                var itemApp = new CollectionApp(vm.appform.typeInp.$modelValue, vm.appform.fioAndOrg.$modelValue, vm.appform.otherText.$modelValue, vm.appform.bankIt.$modelValue,
                     vm.appform.inn.$modelValue, vm.appform.kpp.$modelValue, vm.appform.fullNameOrg.$modelValue,
                     vm.appform.phoneForm.$modelValue, vm.appform.numberItem.$modelValue, vm.appform.bik.$modelValue,
                     vm.appform.numberCorrect.$modelValue, vm.appform.numberSwift.$modelValue, vm.appform.otherRec.$modelValue,
-                    vm.listIncasObj, id, idPerson, dateFormat, number); //поправить collectionObjs
+                    vm.listIncasObj, id, idPerson, dateFormat, number);
 
                 if (vm.listApps.length === 0) {
 
@@ -139,8 +140,6 @@
                 storageUpdater.updateItem("collectApps", vm.listApps);
                 vm.listApps = storageUpdater.getItem("collectApps");
 
-
-
             }
 
             function getDataFormat() {
@@ -152,6 +151,7 @@
                 var timeMinutes = date.getMinutes()
 
                 return currDate + "." + currMonth + "." + currYear + " " + timeHours + ":" + timeMinutes;
+
             }
 
 
@@ -196,7 +196,7 @@
 
             }
 
-             function deleteItem(id) {
+            function deleteItem(id) {
                 vm.listIncasObj.splice(id, 1);
                 //
                 storageUpdater.updateItem("collectItems", vm.listIncasObj);
@@ -220,8 +220,19 @@
                 }
             }
 
+            function copyItem(index) {
+                //копируем
+                var str = JSON.stringify(vm.listIncasObj[index]);
+                var item = JSON.parse(str);
+                item.$$hashKey = vm.listIncasObj[vm.listIncasObj.length - 1].$$hashKey + 1;
+                vm.listIncasObj.push(item);
+                storageUpdater.updateItem("collectItems", vm.listIncasObj);
+                vm.listIncasObj = storageUpdater.getItem("collectItems");
+
+            }
 
 
         }
+
     })
 })();

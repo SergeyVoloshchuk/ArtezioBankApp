@@ -22,7 +22,6 @@
             vm.banks = vm.bank.banks;
             vm.validTime = validTime;
             vm.periodCheck = periodCheck;
-
             vm.deleteItem = deleteItem;
             vm.goUpdateItem = goUpdateItem;
             vm.updateItem = updateItem;
@@ -71,7 +70,7 @@
                 vm.id = vm.collectApps[index].id;
                 vm.fioAndOrg = vm.collectApps[index].fioAndOrg;
                 vm.typeInp = vm.collectApps[index].typeInp;
-                vm.other;Text = vm.collectApps[index].otherText;
+                vm.otherText = vm.collectApps[index].otherText;
                 vm.bankIt = vm.collectApps[index].bankIt;
                 vm.inn = vm.collectApps[index].inn;
                 vm.kpp = vm.collectApps[index].kpp;
@@ -85,20 +84,33 @@
 
             }
 
-            function updateItem(item, text, index) {
-                item.name = vm.newName;
-                vm.periods.splice(index, 1, item)
-                storageUpdater.updateItem("period", vm.periods);
-                vm.periods = storageUpdater.getItem("period");
-                console.log(vm.services);
+            function updateItem() {
+                var id = vm.id - 1;
+                vm.collectApps[id].fioAndOrg = vm.fioAndOrg;
+                vm.collectApps[id].typeInp = vm.typeInp;
+                vm.collectApps[id].otherText = vm.other;
+                vm.collectApps[id].bankIt = vm.bankIt;
+                vm.collectApps[id].inn = vm.inn;
+                vm.collectApps[id].kpp = vm.kpp;
+                vm.collectApps[id].fullNameOrg = vm.fullNameOrg;
+                vm.collectApps[id].phoneForm = vm.phoneForm;
+                vm.collectApps[id].numberItem = vm.numberItem;
+                vm.collectApps[id].bik = vm.bik;
+                vm.collectApps[id].numberCorrect = vm.numberCorrect;
+                vm.collectApps[id].numberSwift = vm.numberSwift;
+                vm.collectApps[id].otherRec = vm.otherRec;
+                storageUpdater.updateItem("collectApps", vm.collectApps);
+                vm.collectApps = storageUpdater.getItem("collectApps");
+
                 vm.inpFlag = false;
             }
+            
 
             function back() {
                 vm.inpFlag = false;
             }
 
-                //валидация рабочих дней
+            //валидация рабочих дней
             function validTime(val) {
                 if (val === undefined || val === '') {
                     return false;

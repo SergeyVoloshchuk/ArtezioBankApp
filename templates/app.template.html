@@ -1,15 +1,24 @@
+
+
+
+
+
 <center>
 <h1>Заявка на инкасацию</h1>
 <form ng-submit="$ctrl.createApp()" name="$ctrl.appform" class="form-horizontal" novalidate>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Тип заявки</label>
 		<div class="col-sm-9">
-			<select ng-model="$ctrl.typeInp" name="typeInp" class="form-control" required>
+
+			<select ng-model="$ctrl.typeInp"  name="typeInp" class="form-control" required>
 				<option></option>
 				<option ng-repeat="type in $ctrl.typeApps">{{type.name}}</option>
 			</select>
 			<span ng-show="$ctrl.appform.typeInp.$error.required" class="label label-warning">Не указан тип
 			заявки</span>
+
+         
+
 		</div>
 	</div>
 	<div class="form-group">
@@ -120,10 +129,16 @@
 	</div>
 </form>
 </div>
+
+
+
+
 <div ng-if="$ctrl.listIncasObj.length>0" class="panel panel-default">
 <div class="panel-heading">Добавленные объекты инкасации</div>
 <ul class="list-group">
-	<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item.servIt}} <button ng-click="$ctrl.deleteItem($index)"  class="btn btn-danger">Удалить</button></li>
+	<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item.servIt}} <button ng-click="$ctrl.deleteItem($index)"  class="btn btn-danger">Удалить</button>
+	<button ng-click="$ctrl.copyItem($index)"  class="btn btn-info">Скопировать</button></li>
+
 </ul>
 </div>
 <div class="panel panel-default">
