@@ -25,3 +25,12 @@
 ## Running
 - Open terminal in your directory
 - Type `node bin/http-server`
+
+## Login and pass
+- Open terminal in your directory
+- admin: 
+   -login: "test"
+   -pass: "test"
+- user: 
+   -login: "test2"
+   -pass: "test2"
