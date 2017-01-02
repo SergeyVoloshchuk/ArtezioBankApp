@@ -1,7 +1,7 @@
 (function() {
     'use strict';
-    angular.module('app.components').component('apps', {
-        templateUrl: '../templates/apps.template.html',
+    angular.module('app.components').component('appsList', {
+        templateUrl: '../templates/appsList.template.html',
         bindings: {
             types: '<',
             service: '<',

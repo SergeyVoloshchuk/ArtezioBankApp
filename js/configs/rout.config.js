@@ -120,9 +120,9 @@
         }
 
         var allAppsState = {
-            name: 'data.apps',
+            name: 'data.appsList',
             url: '/data/apps/',
-            component: 'apps',
+            component: 'appsList',
             resolve: {
                 types: function(dataService) {
                     return dataService.getData("../js/json/types.json");
