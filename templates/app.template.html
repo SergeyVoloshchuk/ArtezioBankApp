@@ -6,6 +6,13 @@
 <center>
 <h1>Заявка на инкасацию</h1>
 <h5>* - обязательное поле</h5>
+
+
+<div ng-show="$ctrl.appSucces" class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Успешно!</strong> Ваша заявка создана!
+</div>
+
 <form ng-submit="$ctrl.createApp()" name="$ctrl.appform" class="form-horizontal" novalidate>
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Тип заявки *</label>
@@ -53,6 +60,8 @@
 			<input ng-class="{'error' : $ctrl.appform.inn.$invalid && !$ctrl.appform.inn.$pristine }"  type="number" name="inn" ng-model="$ctrl.inn" ng-maxlength="12"  class="form-control"  placeholder="ИНН/КИО" required>
 			<span ng-show="$ctrl.appform.inn.$error.maxlength" class="label label-danger">Ошибка заполения</span>
 			<span ng-show="$ctrl.appform.inn.$error.required && !$ctrl.appform.inn.$pristine" class="label label-warning">Не указан ИНН/КИО</span>
+
+			<span ng-show="$ctrl.appform.inn.$error.number" class="label label-danger">Допустимы только числа</span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -61,6 +70,7 @@
 			<input  ng-class="{'error' : $ctrl.appform.kpp.$invalid && !$ctrl.appform.kpp.$pristine }" type="number" name="kpp" ng-model="$ctrl.kpp" ng-maxlength="9" ng-pattern="/[0-9]{9}$/" class="form-control"  placeholder="КПП">
 			<span ng-show="$ctrl.appform.kpp.$error.pattern" class="label label-danger">Число в формате XXXXXXXXX где X - числа [0-9] </span>
 			<span ng-show="$ctrl.appform.kpp.$error.maxlength" class="label label-danger">Длина не должна превышать 9</span>
+			<span ng-show="$ctrl.appform.kpp.$error.number" class="label label-danger">Допустимы только числа</span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -87,6 +97,7 @@
 			<span ng-show="$ctrl.appform.numberItem.$error.maxlength" class="label label-danger"> Количество символов в поле Счет не соответствует норме (20)</span>
 			<span ng-show="$ctrl.appform.numberItem.$error.required && !$ctrl.appform.numberItem.$pristine" class="label label-warning"> Не указан счет для перечисления инкассированных средств</span>
 			<span ng-show="$ctrl.appform.numberItem.$error.min" class="label label-danger">Количество символов в поле Счет не соответствует норме (20)</span>
+				<span ng-show="$ctrl.appform.numberItem.$error.number" class="label label-danger">Допустимы только числа</span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -96,6 +107,7 @@
 			<span ng-show="$ctrl.appform.bik.$error.maxlength" class="label label-danger">Слишком длинный счёт</span>
 			<span ng-show="$ctrl.appform.bik.$error.required && !$ctrl.appform.bik.$pristine" class="label label-warning">Не указан номер счета зачисления</span>
 			<span ng-show="$ctrl.appform.bik.$error.min" class="label label-warning">Число не может быть меньше 0</span>
+			<span ng-show="$ctrl.appform.bik.$error.number" class="label label-danger">Допустимы только числа</span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -106,6 +118,7 @@
 			<span ng-show="$ctrl.appform.numberCorrect.$error.maxlength" class="label label-danger">Слишком длинный счёт</span>
 			<span ng-show="$ctrl.appform.numberCorrect.$error.required && !$ctrl.appform.numberCorrect.$pristine" class="label label-warning">Не указан номер корр. счета банка</span>
 			<span ng-show="$ctrl.appform.numberCorrect.$error.min" class="label label-warning">Число не может быть меньше 0</span>
+			<span ng-show="$ctrl.appform.numberCorrect.$error.number" class="label label-danger">Допустимы только числа</span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -116,6 +129,7 @@
 			<span ng-show="$ctrl.appform.numberSwift.$error.minlength" class="label label-danger">Значение слишком мало</span>
 			<span ng-show="$ctrl.appform.numberSwift.$error.required && !$ctrl.appform.numberSwift.$pristine" class="label label-warning">Не указан SWIFT</span>
 			<span ng-show="$ctrl.appform.numberSwift.$error.min" class="label label-warning">Число не может быть меньше 0</span>
+
 		</div>
 	</div>
 	<div class="form-group">
@@ -128,6 +142,7 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-9">
 			<button type="submit" ng-disabled="$ctrl.appform.$invalid" class="btn btn-success">Подтвердить</button>
+			<button type="reset" ng-model="$ctrl.but" class="btn btn-success">Сброс</button>
 		</div>
 	</div>
 </form>
@@ -146,7 +161,10 @@
 </div>
 <div class="panel panel-default">
 <!-- Default panel contents -->
-
+<div ng-show="$ctrl.itemSucces" class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Успешно!</strong> Ваш объект создан!
+</div>
 
 <div class="panel-body">
 	<p>Добавьте объекты инкасации</p>

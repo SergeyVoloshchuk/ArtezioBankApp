@@ -30,8 +30,6 @@
             activate();
 
             function activate() {
-
-
                 console.log("app component");
                 vm.listIncasObj = [];
                 vm.listApps = [];
@@ -129,18 +127,33 @@
                     newStr += number;
                     itemApp.number = newStr;
 
-                    itemApp.$$hashKey = vm.listApps[vm.listApps.length - 1].$$hashKey + 1;
+                   // itemApp.$$hashKey = vm.listApps[vm.listApps.length - 1].$$hashKey + 1;
                     itemApp.id = vm.listApps[vm.listApps.length - 1].id + 1;
+
+
                 }
 
 
 
-                console.log(itemApp);
                 vm.listApps.push(itemApp);
+
+                //очистка полей и перевод формы в невалидное состояние
+                vm.appform.$invalid = true;
+                for (var prop in vm.appform) {
+
+                    if (vm[prop] !== undefined) {
+
+                        vm[prop] = null;
+                        vm.appform[prop].$pristine = true;
+                    }
+                }
+
+                vm.appSucces = true;
                 storageUpdater.updateItem("collectApps", vm.listApps);
                 vm.listApps = storageUpdater.getItem("collectApps");
-
             }
+
+
 
             function getDataFormat() {
                 var date = new Date();
@@ -181,18 +194,32 @@
                         console.log("Превышен пердел");
                         return;
                     }
-                    itemCollect.$$hashKey = vm.listIncasObj[vm.listIncasObj.length - 1].$$hashKey + 1;
+                   // itemCollect.$$hashKey = vm.listIncasObj[vm.listIncasObj.length - 1].$$hashKey + 1;
 
                     itemCollect.id = vm.listIncasObj[vm.listIncasObj.length - 1].id + 1;
                 }
 
 
-
-
-                console.log(itemCollect);
                 vm.listIncasObj.push(itemCollect);
+
+
+                //очистка полей и перевод формы в невалидное состояние
+                vm.objForm.$invalid = true;
+                for (var prop in vm.objForm) {
+
+                    if (vm[prop] !== undefined) {
+
+                        vm[prop] = null;
+                        vm.objForm[prop].$pristine = true;
+                    }
+                }
+
+                vm.itemSucces = true;
+
                 storageUpdater.updateItem("collectItems", vm.listIncasObj);
                 vm.listIncasObj = storageUpdater.getItem("collectItems");
+
+
 
             }
 
@@ -230,6 +257,12 @@
                 vm.listIncasObj = storageUpdater.getItem("collectItems");
 
             }
+
+            function resetForm(formModel) {
+                angular.copy({}, formModel);
+            }
+
+
 
 
         }

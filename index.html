@@ -54,11 +54,11 @@
                 <li ng-if="main.isLogin" class="dropdown">
                     <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Профиль<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a ui-sref-active="active">Привет, {{main.person.name}}</a></li>
-                        <li><a class="click" ng-click="main.logout()" ui-sref-active="active">Выйти</a></li>
+                        <li><a>Привет, {{main.person.name}}</a></li>
+                        <li ui-sref-active="active"><a class="click" ng-click="main.logout()">Выйти</a></li>
                     </ul>
                 </li>
-                <li><a ui-sref="login.logging" ui-sref-active="active">Информация</a></li>
+                <li ui-sref-active="active"><a ui-sref="login.logging" >Информация</a></li>
             </ul>
         </nav>
         <div ng-show="main.loginErrorFlag" class="alert alert-danger alert-dismissable">
