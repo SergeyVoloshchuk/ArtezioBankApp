@@ -30,7 +30,7 @@
         }
 
         function submit() {
-
+            vm.loginErrorFlag = false;
             dataService.getData("../js/json/persons.json").then(function(res) {
                 var persons = res;
                 var person = loginService.getPerson(persons, vm.login);
@@ -43,6 +43,7 @@
                 } else {
                     vm.login = "";
                     vm.password = "";
+                    vm.loginErrorFlag = true;
                 }
 
             });

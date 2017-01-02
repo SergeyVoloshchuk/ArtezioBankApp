@@ -39,16 +39,18 @@
                 
                 <li class="active">
                     <div ng-if="!main.isLogin" class="login">
-                        <form ng-submit="main.submit()" role="form" class="form-inline">
+                        <form ng-submit="main.submit()" name="main.loginForm" role="form" class="form-inline" novalidate>
                             <div class="form-group">
                                 
-                                <input type="text" ng-model="main.login" class="form-control" id="email" placeholder="Введите login">
+                                <input type="text" ng-model="main.login" class="form-control" id="email" placeholder="Введите login" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" ng-model="main.password" class="form-control" id="pass" placeholder="Пароль">
+                                <input type="password" ng-model="main.password" class="form-control" id="pass" placeholder="Пароль" required>
                             </div>
-                            <button type="submit" class="btn btn-success">Войти</button>
+                            <button type="submit" ng-disabled="main.loginForm.$invalid" class="btn btn-success">Войти</button>
                         </form>
+                    
+                       
                     </div>
                     
                 </li>
@@ -62,6 +64,10 @@
                 <li><a ui-sref="login.logging" ui-sref-active="active">Информация</a></li>
             </ul>
         </nav>
+        <div ng-show="main.loginErrorFlag" class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+ <center> <strong>Ошибка!</strong> Вы ввели некорректные логин или пароль! </center>
+</div>
         <div class="container">
             <div class="jumbotron">
                 <ui-view>

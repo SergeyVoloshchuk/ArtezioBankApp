@@ -12,11 +12,16 @@
 
 
         function check(login, pass, user) {
-
+            if(login ===undefined || pass === undefined || user === undefined){
+                return false;
+            }
             if (login === user.login && pass === user.password) {
                 localStorage.setItem("isLogin", true);
                 storageUpdater.updateItem("person",user);
                 return true;
+            }
+            else {
+                return false;
             }
 
         }
