@@ -10,7 +10,7 @@
 ## Installing Bower
 
 - Open terminal
-- Type `sudo npm bower install -g`
+- Type `sudo npm install -g bower`
 
 ## Installing Node.js Packages
 `npm install` will install these too, but you can do it manually.
@@ -24,7 +24,7 @@
 
 ## Running
 - Open terminal in your directory
-- Type `node bin/http-server`
+- Type `npm start`
 
 ## Login and pass
 - admin: 
