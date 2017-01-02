@@ -43,15 +43,19 @@
 
                     //выводить будем только те, которые создал пользователь(исключение админ.)
                     var person = storageUpdater.getItem("person");
+
+                    if (person.role === 1) {
+                            vm.collectApps = collectAppsAll;
+                            return;
+                        }
+
                     for (var i = 0; i < collectAppsAll.length; i++) {
                         if (collectAppsAll[i].idPerson === person.id && person.role !== 1) {
 
                             vm.collectApps.push(collectAppsAll[i]);
 
                         }
-                        if (person.role === 1) {
-                            vm.collectApps = collectAppsAll;
-                        }
+                        
                     }
 
                 }
