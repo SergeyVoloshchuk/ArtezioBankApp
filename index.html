@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
     <head>
-
-
         <meta charset="UTF-8">
         <title>BankApp</title>
         <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -12,22 +10,21 @@
     </head>
     <body ng-controller="MainController as main">
         <nav class="navbar navbar-default navbar-fixed-top">
-            <a class="navbar-brand" href="/">BankApp</a>
+            <a  class="navbar-brand" href="/">BankApp</a>
             <ul class="nav navbar-nav">
-                <li class="active"><a ng-if="main.isLogin" ui-sref="data.app" ui-sref-active="active">Заявка на инкасацию <span class="sr-only">(current)</span></a></li>
-                <li><a ng-if="main.isLogin" ui-sref="data.appsList" ui-sref-active="active">Заявки</a></li>
-
+                <li ui-sref-active="active"><a ng-if="main.isLogin" ui-sref="data.app" >Заявка на инкасацию <span class="sr-only">(current)</span></a></li>
+                <li ui-sref-active="active"><a ng-if="main.isLogin" ui-sref="data.appsList">Заявки</a></li>
                 <li  class="dropdown">
                     <a ng-if="main.person.role==1&&main.isLogin" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Справочники <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            
-                            <li><a  ui-sref="data.booktype" ui-sref-active="active">Типы заявки на инкассацию</a></li>
-                            <li ><a ui-sref="data.bookservice" ui-sref-active="active">Справочник инкассаторских услуг</a></li>
-                               <li ><a ui-sref="data.bookperiod" ui-sref-active="active"> Периодичность оказания инкассаторских услуг</a></li>
-                                 <li ><a ui-sref=" data.bookcash" ui-sref-active="active">Коды валют</a></li>
-                                  <li ><a ui-sref=" data.bookmethod" ui-sref-active="active">Метод сдачи наличности</a></li>
-                                  <li ><a ui-sref=" data.bookbank" ui-sref-active="active">Банки</a></li>
-                
+                    <ul class="dropdown-menu">
+                        
+                        <li ui-sref-active="active"><a  ui-sref="data.booktype">Типы заявки на инкассацию</a></li>
+                        <li ui-sref-active="active" ><a ui-sref="data.bookservice" >Справочник инкассаторских услуг</a></li>
+                        <li ui-sref-active="active"><a ui-sref="data.bookperiod"> Периодичность оказания инкассаторских услуг</a></li>
+                        <li ui-sref-active="active"><a ui-sref=" data.bookcash">Коды валют</a></li>
+                        <li ui-sref-active="active" ><a ui-sref=" data.bookmethod">Метод сдачи наличности</a></li>
+                        <li ui-sref-active="active" ><a ui-sref=" data.bookbank" ">Банки</a></li>
+                        
                     </ul>
                 </li>
                 
@@ -49,8 +46,8 @@
                             </div>
                             <button type="submit" ng-disabled="main.loginForm.$invalid" class="btn btn-success">Войти</button>
                         </form>
-                    
-                       
+                        
+                        
                     </div>
                     
                 </li>
@@ -65,9 +62,9 @@
             </ul>
         </nav>
         <div ng-show="main.loginErrorFlag" class="alert alert-danger alert-dismissable">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
- <center> <strong>Ошибка!</strong> Вы ввели некорректные логин или пароль! </center>
-</div>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <center> <strong>Ошибка!</strong> Вы ввели некорректные логин или пароль! </center>
+        </div>
         <div class="container">
             <div class="jumbotron">
                 <ui-view>
@@ -93,8 +90,6 @@
         <script src="./js/compopents/bookMethod.component.js"></script>
         <script src="./js/compopents/bookBank.component.js"></script>
         <script src="./js/compopents/appsList.component.js"></script>
-
-
         
     </body>
 </html>
