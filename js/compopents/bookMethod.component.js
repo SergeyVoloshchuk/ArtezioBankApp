@@ -5,34 +5,25 @@
         bindings: {
             method: '<'
         },
-        controller: function(storageUpdater) {
+        controller: function(bookService) {
             var vm = this;
-            vm.methods = vm.method.methods;
             vm.deleteItem = deleteItem;
             vm.goUpdateItem = goUpdateItem;
             vm.updateItem = updateItem;
             vm.back = back;
             vm.add = add;
+ 
+            var itemStr = "method";
             activate();
 
             function activate() {
-                console.log("bookMethod activate");
 
-                //сохраняем в локальное хранилище если там ничего нет
-                if (localStorage.getItem("method") === null) {
-                    storageUpdater.updateItem("method", vm.method.methods);
-                    vm.methods = storageUpdater.getItem("method");
+                 vm.methods = bookService.activateBook(itemStr,  vm.method.methods);
 
-                } else {
-                    vm.methods = storageUpdater.getItem("method");
-                }
             }
 
-            function deleteItem(id) {
-                vm.methods.splice(id, 1);
-                //
-                storageUpdater.updateItem("method", vm.methods);
-                vm.methods = storageUpdater.getItem("method");
+            function deleteItem(id ) {
+                 vm.methods = bookService.deleteItem(id,  vm.methods, itemStr);
             }
 
             function goUpdateItem(index) {
@@ -40,27 +31,19 @@
                 vm.index = index;
             }
 
-            function updateItem(item, text, index) {
-                item.name = vm.newName;
-                vm.methods.splice(index, 1, item)
-                storageUpdater.updateItem("method", vm.methods);
-                vm.methods = storageUpdater.getItem("method");
+            function updateItem(text, index) {
+                 vm.methods = bookService.updateItem(text, index,  vm.methods , itemStr);
                 vm.inpFlag = false;
             }
 
             function back() {
                 vm.inpFlag = false;
             }
-            function add() {
-                var item = {};
-                item.id = vm.methods[vm.methods.length - 1].id + 1;
-                item.name = vm.newText;
-                item.$$hashKey = vm.methods[vm.methods.length - 1].$$hashKey + 1;
-                vm.methods.push(item);
-                vm.newText = "";
-                storageUpdater.updateItem("method", vm.methods);
-                vm.methods = storageUpdater.getItem("method");
+
+            function add(text) {
+                 vm.methods = bookService.add(text , vm.methods , itemStr);
             }
+           
         }
     })
 })();

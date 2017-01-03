@@ -5,33 +5,25 @@
         bindings: {
             type: '<'
         },
-        controller: function(storageUpdater) {
+        controller: function(bookService) {
 
             var vm = this;
-            vm.types = vm.type.types;
             vm.deleteItem = deleteItem;
             vm.goUpdateItem = goUpdateItem;
             vm.updateItem = updateItem;
             vm.back = back;
-             vm.add = add;
+            vm.add = add;
+
+            var itemStr = "types";
             activate();
 
             function activate() {
-                console.log("bookTypes activate");
-                //сохраняем в локальное хранилище если там ничего нет
-                if (localStorage.getItem("types") === null) {
-                    storageUpdater.updateItem("types", vm.type.types);
-                    vm.types = storageUpdater.getItem("types");
+                vm.types = bookService.activateBook(itemStr, vm.type.types);
 
-                } else {
-                    vm.types = storageUpdater.getItem("types");
-                }
             }
 
             function deleteItem(id) {
-                vm.types.splice(id, 1);
-                storageUpdater.updateItem("types", vm.types); //обновляем хранилище
-                vm.types = storageUpdater.getItem("types"); //получаем новые данные
+                vm.types = bookService.deleteItem(id, vm.types, itemStr);
             }
 
             function goUpdateItem(index) {
@@ -39,26 +31,17 @@
                 vm.index = index;
             }
 
-            function updateItem(item, text, index) {
-                item.name = vm.newName;
-                vm.types.splice(index, 1, item)
-                storageUpdater.updateItem("types", vm.types); //обновляем хранилище
-                vm.types = storageUpdater.getItem("types"); //получаем новые данные
+            function updateItem(text, index) {
+                vm.types = bookService.updateItem(text, index, vm.types, itemStr);
                 vm.inpFlag = false;
             }
 
             function back() {
                 vm.inpFlag = false;
             }
-            function add() {
-                var item = {};
-                item.id = vm.types[vm.types.length - 1].id + 1;
-                item.name = vm.newText;
-                item.$$hashKey = vm.types[vm.types.length - 1].$$hashKey + 1;
-                vm.types.push(item);
-                vm.newText = "";
-                storageUpdater.updateItem("types", vm.types);
-                vm.types = storageUpdater.getItem("types");
+
+            function add(text) {
+                vm.types = bookService.add(text, vm.types, itemStr);
             }
 
         }

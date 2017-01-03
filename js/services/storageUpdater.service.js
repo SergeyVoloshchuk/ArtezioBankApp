@@ -25,7 +25,8 @@
         }
 
         function getItem(key) {
-            var items = JSON.parse(localStorage.getItem(key)); //берём значения
+            var obj = localStorage.getItem(key);
+            var items = JSON.parse(obj); //берём значения
             return items;
         }
 

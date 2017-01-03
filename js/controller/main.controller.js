@@ -18,7 +18,7 @@
             }
 
            //тестовое заполнение данными только если там нет данных
-           if(localStorage.getItem("collectApps")===null){
+           if(localStorage.getItem("collectApps") === null || localStorage.getItem("collectApps") === "[]"){
             dataService.getData("../js/json/apps.json").then(function(res) {
                 storageUpdater.updateItem("collectApps", res.massApps );
                 storageUpdater.getItem("collectApps");

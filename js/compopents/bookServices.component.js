@@ -5,35 +5,24 @@
         bindings: {
             service: '<'
         },
-        controller: function(storageUpdater) {
-            console.log("bookService component");
+        controller: function(bookService) {
+
             var vm = this;
-            vm.services = vm.service.services;
             vm.deleteItem = deleteItem;
             vm.goUpdateItem = goUpdateItem;
             vm.updateItem = updateItem;
             vm.back = back;
             vm.add = add;
+            var itemStr = "services";
             activate();
 
             function activate() {
-                console.log("bookService activate");
+                vm.services = bookService.activateBook(itemStr, vm.service.services);
 
-                //сохраняем в локальное хранилище если там ничего нет
-                if (localStorage.getItem("services") === null) {
-                    storageUpdater.updateItem("services", vm.service.services);
-                    vm.services = storageUpdater.getItem("services");
-
-                } else {
-                    vm.services = storageUpdater.getItem("services");
-                }
             }
 
-            function deleteItem(id) {
-                vm.services.splice(id, 1);
-                //
-                storageUpdater.updateItem("services", vm.services);
-                vm.services = storageUpdater.getItem("services");
+            function deleteItem(id ) {
+                vm.services = bookService.deleteItem(id, vm.services, itemStr);
             }
 
             function goUpdateItem(index) {
@@ -41,27 +30,17 @@
                 vm.index = index;
             }
 
-            function updateItem(item, text, index) {
-                item.name = vm.newName;
-                vm.services.splice(index, 1, item)
-                storageUpdater.updateItem("services", vm.services);
-                vm.services = storageUpdater.getItem("services");
-                console.log(vm.services);
+            function updateItem(text, index) {
+                vm.services = bookService.updateItem(text, index, vm.services , itemStr);
                 vm.inpFlag = false;
             }
 
             function back() {
                 vm.inpFlag = false;
             }
-            function add() {
-                var item = {};
-                item.id = vm.services[vm.services.length - 1].id + 1;
-                item.name = vm.newText;
-                item.$$hashKey = vm.services[vm.services.length - 1].$$hashKey + 1;
-                vm.services.push(item);
-                vm.newText = "";
-                storageUpdater.updateItem("services", vm.services);
-                vm.services = storageUpdater.getItem("services");
+
+            function add(text) {
+                vm.services = bookService.add(text ,vm.services , itemStr);
             }
         }
     })

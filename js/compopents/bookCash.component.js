@@ -5,34 +5,24 @@
         bindings: {
             code: '<'
         },
-        controller: function(storageUpdater) {
+        controller: function(bookService) {
             var vm = this;
-            vm.codes = vm.code.codes;
             vm.deleteItem = deleteItem;
             vm.goUpdateItem = goUpdateItem;
             vm.updateItem = updateItem;
             vm.back = back;
             vm.add = add;
+            var itemStr = "codes";
             activate();
 
             function activate() {
-                console.log("bookPeriod activate");
 
-                //сохраняем в локальное хранилище если там ничего нет
-                if (localStorage.getItem("codes") === null) {
-                    storageUpdater.updateItem("codes", vm.code.codes);
-                    vm.codes = storageUpdater.getItem("codes");
+                vm.codes = bookService.activateBook(itemStr, vm.code.codes);
 
-                } else {
-                    vm.codes = storageUpdater.getItem("codes");
-                }
             }
 
-            function deleteItem(id) {
-                vm.codes.splice(id, 1);
-                //
-                storageUpdater.updateItem("codes", vm.codes);
-                vm.codes = storageUpdater.getItem("codes");
+            function deleteItem(id ) {
+                vm.codes = bookService.deleteItem(id, vm.codes, itemStr);
             }
 
             function goUpdateItem(index) {
@@ -40,27 +30,19 @@
                 vm.index = index;
             }
 
-            function updateItem(item, text, index) {
-                item.name = vm.newName;
-                vm.codes.splice(index, 1, item)
-                storageUpdater.updateItem("codes", vm.codes);
-                vm.codes = storageUpdater.getItem("codes");
+            function updateItem(text, index) {
+                vm.codes = bookService.updateItem(text, index, vm.codes , itemStr);
                 vm.inpFlag = false;
             }
 
             function back() {
                 vm.inpFlag = false;
             }
-            function add() {
-                var item = {};
-                item.id = vm.codes[vm.codes.length - 1].id + 1;
-                item.name = vm.newText;
-                item.$$hashKey = vm.codes[vm.codes.length - 1].$$hashKey + 1;
-                vm.codes.push(item);
-                vm.newText = "";
-                storageUpdater.updateItem("codes", vm.codes);
-                vm.codes = storageUpdater.getItem("codes");
+
+            function add(text) {
+                vm.codes = bookService.add(text ,vm.codes , itemStr);
             }
+
         }
     })
 })();

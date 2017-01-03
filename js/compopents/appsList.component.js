@@ -160,7 +160,7 @@
             function copyItem(index) {
                 var str = JSON.stringify(vm.listIncasObj[index]);
                 var item = JSON.parse(str);
-                item.$$hashKey = vm.listIncasObj[vm.listIncasObj.length - 1].$$hashKey + 1;
+                delete item.$$hashKey;
                 vm.listIncasObj.push(item);
             }
 

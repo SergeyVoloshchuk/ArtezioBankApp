@@ -14,15 +14,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in $ctrl.types">
+			<tr ng-repeat="item in $ctrl.types track by $index">
 				<td>{{item.id}}</td>
 				<td> {{item.name}}
 					<div ng-if="$ctrl.inpFlag&&$ctrl.index===$index" class="col-sm-10">
-						<input type="text" ng-init="$ctrl.newName = item.name" ng-model="$ctrl.newName" class="form-control" placeholder="Сервис" >
+						<input type="text" ng-init="$ctrl.nameInp = item.name" ng-model="$ctrl.nameInp" class="form-control" placeholder="Сервис" >
 					</td>
-					
 					<td>
-						<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.updateItem(item,item.name ,$index)" type="button" class="btn btn-default">Сохранить</button>
+						<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.updateItem($ctrl.nameInp ,$index)" type="button" class="btn btn-default">Сохранить</button>
 						<button ng-if="$ctrl.inpFlag&&$ctrl.index===$index" ng-click="$ctrl.back()" type="button" class="btn btn-default">Отменить</button>
 						<div class="btn-group unvisual-{{$ctrl.inpFlag}}">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Действие <span class="caret"></span></button>
@@ -36,12 +35,12 @@
 					</tbody>
 				</table>
 				<div class="panel-body">
-		<div class="col-sm-6">
-		<center>
-					<input type="text" ng-model="$ctrl.newText" class="form-control" placeholder="Название">
-					<br>
-					<button type="button" ng-click="$ctrl.add()" class="btn btn-default">Добавить</button>
-					</center>
+					<div class="col-sm-6">
+						<center>
+						<input type="text" ng-model="$ctrl.newItemText" class="form-control" placeholder="Название">
+						<br>
+						<button type="button" ng-click="$ctrl.add($ctrl.newItemText)" class="btn btn-default">Добавить</button>
+						</center>
+					</div>
 				</div>
-	</div>
 			</div>
