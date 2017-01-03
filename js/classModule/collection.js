@@ -4,7 +4,7 @@
 
 var CollectionObj = function(timeGetCash, cashType, periodServ, day, cashLen, mainPepCont, workdayFirst, workdaySecond,
     saturdayFirst, saturdaySecond, sundayFirst, sundaySecond, typeCity, typeAdress, nameCityPoint,
-    street, numberHouse, corpusHouse, servIt, id, idPerson) {
+    street, numberHouse, corpusHouse, servIt, id, idPerson ,dateWork) {
     this.timeGetCash = timeGetCash;
     this.cashType = cashType;
     this.periodServ = periodServ;
@@ -35,6 +35,7 @@ var CollectionObj = function(timeGetCash, cashType, periodServ, day, cashLen, ma
 
     this.id = id;
     this.idPerson = idPerson;
+    this.dateWork = dateWork;
 };
 
 var CollectionApp = function(typeInp, fioAndOrg, otherText, bankIt, inn, kpp, fullNameOrg, phoneForm, numberItem,

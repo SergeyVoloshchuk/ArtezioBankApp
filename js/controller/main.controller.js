@@ -30,12 +30,12 @@
         }
 
         function submit() {
-            vm.loginErrorFlag = false;
             dataService.getData("../js/json/persons.json").then(function(res) {
                 var persons = res;
                 var person = loginService.getPerson(persons, vm.login);
                 return person;
             }).then(function(res) {
+                vm.loginErrorFlag = false;
                 var flag = loginService.check(vm.login, vm.password, res);
                 if (flag === true) {
                     vm.isLogin = localStorage.getItem("isLogin");

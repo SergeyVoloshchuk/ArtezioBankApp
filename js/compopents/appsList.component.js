@@ -13,7 +13,6 @@
 
         controller: function(storageUpdater) {
             var vm = this;
-            //  vm.collectApps = [] ;
             vm.typeApps = vm.types.types;
             vm.services = vm.service.services;
             vm.periods = vm.period.period;
@@ -26,6 +25,11 @@
             vm.goUpdateItem = goUpdateItem;
             vm.updateItem = updateItem;
             vm.back = back;
+            vm.deleteSubItem = deleteSubItem;
+            vm.copyItem = copyItem;
+            vm.goUpdateSubItem = goUpdateSubItem;
+            vm.backForItem = backForItem;
+            vm.updateSubItem = updateSubItem;
             activate();
 
             function activate() {
@@ -39,23 +43,30 @@
                 } else {
                     vm.collectApps = [];
                     var collectAppsAll = storageUpdater.getItem("collectApps");
+
                     vm.nullTable = false;
 
                     //выводить будем только те, которые создал пользователь(исключение админ.)
                     var person = storageUpdater.getItem("person");
 
                     if (person.role === 1) {
-                            vm.collectApps = collectAppsAll;
-                            return;
+                        vm.collectApps = collectAppsAll;
+                    } else {
+
+
+                        for (var i = 0; i < collectAppsAll.length; i++) {
+                            if (collectAppsAll[i].idPerson === person.id && person.role !== 1) {
+
+                                vm.collectApps.push(collectAppsAll[i]);
+
+                            }
+
                         }
 
-                    for (var i = 0; i < collectAppsAll.length; i++) {
-                        if (collectAppsAll[i].idPerson === person.id && person.role !== 1) {
-
-                            vm.collectApps.push(collectAppsAll[i]);
-
+                        if (vm.collectApps.length < 1) {
+                            vm.nullTable = true;
                         }
-                        
+
                     }
 
                 }
@@ -85,6 +96,7 @@
                 vm.numberCorrect = vm.collectApps[index].numberCorrect;
                 vm.numberSwift = vm.collectApps[index].numberSwift;
                 vm.otherRec = vm.collectApps[index].otherRec;
+                vm.listIncasObj = vm.collectApps[index].collectionObjs;
 
             }
 
@@ -103,15 +115,21 @@
                 vm.collectApps[id].numberCorrect = vm.numberCorrect;
                 vm.collectApps[id].numberSwift = vm.numberSwift;
                 vm.collectApps[id].otherRec = vm.otherRec;
+                vm.collectApps[id].collectionObjs = vm.listIncasObj;
                 storageUpdater.updateItem("collectApps", vm.collectApps);
                 vm.collectApps = storageUpdater.getItem("collectApps");
 
-                vm.inpFlag = false;
+                back();
+                backForItem();
             }
-            
+
 
             function back() {
                 vm.inpFlag = false;
+            }
+
+            function backForItem() {
+                vm.flagForUpdate = false;
             }
 
             //валидация рабочих дней
@@ -131,6 +149,74 @@
                 }
             }
 
+            function deleteSubItem(id) {
+                vm.listIncasObj.splice(id, 1);
+            }
+
+            function copyItem(index) {
+                var str = JSON.stringify(vm.listIncasObj[index]);
+                var item = JSON.parse(str);
+                item.$$hashKey = vm.listIncasObj[vm.listIncasObj.length - 1].$$hashKey + 1;
+                vm.listIncasObj.push(item);
+            }
+
+            function goUpdateSubItem(index) {
+                vm.flagForUpdate = true;
+                vm.itemSucces = false;
+
+                vm.timeGetCash = vm.listIncasObj[index].timeGetCash;
+                vm.cashType = vm.listIncasObj[index].cashType;
+                vm.periodServ = vm.listIncasObj[index].periodServ;
+                vm.day = vm.listIncasObj[index].day;
+                vm.cashLen = vm.listIncasObj[index].cashLen;
+                vm.mainPepCont = vm.listIncasObj[index].mainPepCont;
+                vm.workdayFirst = vm.listIncasObj[index].workdayFirst;
+                vm.workdaySecond = vm.listIncasObj[index].workdaySecond;
+                vm.saturdayFirst = vm.listIncasObj[index].saturdayFirst;
+                vm.saturdaySecond = vm.listIncasObj[index].saturdaySecond;
+                vm.sundayFirst = vm.listIncasObj[index].sundayFirst;
+                vm.sundaySecond = vm.listIncasObj[index].sundaySecond;
+                vm.typeCity = vm.listIncasObj[index].typeCity;
+                vm.typeAdress = vm.listIncasObj[index].typeAdress;
+                vm.nameCityPoint = vm.listIncasObj[index].nameCityPoint;
+                vm.street = vm.listIncasObj[index].street;
+                vm.numberHouse = vm.listIncasObj[index].numberHouse;
+                vm.corpusHouse = vm.listIncasObj[index].corpusHouse;
+                vm.servIt = vm.listIncasObj[index].servIt;
+                vm.dateWork = vm.listIncasObj[index].dateWork;
+                vm.indexItem = index;
+
+
+            }
+
+            function updateSubItem() {
+                var index = vm.indexItem;
+
+                vm.listIncasObj[index].timeGetCash = vm.timeGetCash;
+                vm.listIncasObj[index].cashType = vm.cashType;
+                vm.listIncasObj[index].periodServ = vm.periodServ;
+                vm.listIncasObj[index].day = vm.day;
+                vm.listIncasObj[index].cashLen = vm.cashLen;
+                vm.listIncasObj[index].mainPepCont = vm.mainPepCont;
+                vm.listIncasObj[index].workdayFirst = vm.workdayFirst;
+                vm.listIncasObj[index].workdaySecond = vm.workdaySecond;
+                vm.listIncasObj[index].saturdayFirst = vm.saturdayFirst;
+                vm.listIncasObj[index].saturdaySecond = vm.saturdaySecond;
+                vm.listIncasObj[index].sundayFirst = vm.sundayFirst;
+                vm.listIncasObj[index].sundaySecond = vm.sundaySecond;
+                vm.listIncasObj[index].typeCity = vm.typeCity;
+                vm.listIncasObj[index].typeAdress = vm.typeAdress;
+                vm.listIncasObj[index].nameCityPoint = vm.nameCityPoint;
+                vm.listIncasObj[index].street = vm.street;
+                vm.listIncasObj[index].numberHouse = vm.numberHouse;
+                vm.listIncasObj[index].corpusHouse = vm.corpusHouse;
+                vm.listIncasObj[index].servIt = vm.servIt;
+                vm.listIncasObj[index].dateWork = vm.dateWork;
+
+                vm.itemSucces = true;
+
+            }
         }
+
     })
 })();
