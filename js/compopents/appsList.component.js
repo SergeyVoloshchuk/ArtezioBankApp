@@ -30,6 +30,7 @@
             vm.goUpdateSubItem = goUpdateSubItem;
             vm.backForItem = backForItem;
             vm.updateSubItem = updateSubItem;
+
             activate();
 
             function activate() {
@@ -221,6 +222,27 @@
                 backForItem();
 
             }
+
+            // сортировки
+            function getDataCurr() {
+                var date = new Date();
+                var currDate = date.getDate();
+                var currMonth = date.getMonth() + 1;
+                var currYear = date.getFullYear();
+                var timeHours = date.getHours();
+                var timeMinutes = date.getMinutes()
+
+                return {
+                    currDate: currDate,
+                    currMonth: currMonth,
+                    currYear: currYear,
+                    timeHours: timeHours,
+                    timeMinutes
+                };
+
+            }
+
+    
 
         }
 

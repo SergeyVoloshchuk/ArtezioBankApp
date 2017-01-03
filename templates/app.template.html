@@ -49,7 +49,7 @@
 		<div class="col-sm-9">
 			<select ng-class="{'error' : $ctrl.appform.bankIt.$invalid && !$ctrl.appform.bankIt.$pristine }" data-toggle="tooltip" title="Подразделения банка, где обслуживается клиент" ng-model="$ctrl.bankIt" name="bankIt" class="form-control" required>
 				<option></option>
-				<option ng-repeat="item in $ctrl.banks">{{item.name}}</option>
+				<option ng-repeat="item in $ctrl.banks track by $index">{{item.name}}</option>
 			</select>
 			<span ng-show="$ctrl.appform.bankIt.$error.required && !$ctrl.appform.bankIt.$pristine" class="label label-warning"> Не указано подразделение банка</span>
 		</div>
@@ -154,7 +154,7 @@
 <div ng-if="$ctrl.listIncasObj.length>0" class="panel panel-default">
 <div class="panel-heading">Добавленные объекты инкасации</div>
 <ul class="list-group">
-	<li  ng-repeat="item in $ctrl.listIncasObj" class="list-group-item">{{item.servIt}} <button ng-click="$ctrl.deleteItem($index)"  class="btn btn-danger">Удалить</button>
+	<li  ng-repeat="item in $ctrl.listIncasObj track by $index" class="list-group-item">{{item.servIt}} <button ng-click="$ctrl.deleteItem($index)"  class="btn btn-danger">Удалить</button>
 	<button ng-click="$ctrl.copyItem($index)"  class="btn btn-info">Скопировать</button></li>
 
 </ul>
@@ -190,7 +190,7 @@
 				<div class="col-sm-9">
 					<select ng-class="{'error' : $ctrl.objForm.cashType.$invalid && !$ctrl.objForm.cashType.$pristine }" data-toggle="tooltip" title="Предпочитаемый способ сдачи денежной наличности для инкассации" class="form-control" name="cashType" ng-model="$ctrl.cashType" required>
 						<option></option>
-						<option ng-repeat="item in $ctrl.methods">{{item.name}}</option>
+						<option ng-repeat="item in $ctrl.methods track by $index">{{item.name}}</option>
 					</select>
 					<span  ng-show="$ctrl.objForm.cashType.$error.required && !$ctrl.objForm.cashType.$pristine" class="label label-warning">Не указан редпочитаемый способ сдачи денежной наличности для инкассации</span>
 				</div>
@@ -201,7 +201,7 @@
 				<label class="col-sm-3 control-label">Периодичность оказания инкассаторских услуг *</label>
 				<div class="col-sm-9">
 					<select ng-class="{'error' : $ctrl.objForm.periodServ.$invalid && !$ctrl.objForm.periodServ.$pristine }" class="form-control" ng-init="flagServ" ng-change="flagServ = $ctrl.periodCheck($ctrl.periodServ)" name="periodServ" ng-model="$ctrl.periodServ" required>
-						<option ng-repeat="item in $ctrl.periods">{{item.name}}</option>
+						<option ng-repeat="item in $ctrl.periods track by $index">{{item.name}}</option>
 					</select>
 					<span  ng-show="$ctrl.objForm.periodServ.$error.required && !$ctrl.objForm.periodServ.$pristine" class="label label-warning">Не указан период оказания инкассаторских услуг </span>
 					
@@ -374,7 +374,7 @@
 				<div class="col-sm-9">
 					<select ng-class="{'error' : $ctrl.objForm.servIt.$invalid && !$ctrl.objForm.servIt.$pristine }" name="servIt" data-toggle="tooltip" title="Инкассаторская услуга для оказания юридическому лицу" ng-model="$ctrl.servIt" class="form-control" required>
 						<option></option>
-						<option ng-repeat="item in $ctrl.services">{{item.name}}</option>
+						<option ng-repeat="item in $ctrl.services track by $index">{{item.name}}</option>
 					</select>
 					<span ng-show="$ctrl.objForm.servIt.$error.required && !$ctrl.objForm.servIt.$pristine" class="label label-warning">Не указана предпочетаемая инкасаторская услуга</span>
 				</div>
