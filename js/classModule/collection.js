@@ -4,7 +4,7 @@
 
 var CollectionObj = function(timeGetCash, cashType, periodServ, day, cashLen, mainPepCont, workdayFirst, workdaySecond,
     saturdayFirst, saturdaySecond, sundayFirst, sundaySecond, typeCity, typeAdress, nameCityPoint,
-    street, numberHouse, corpusHouse, servIt, id, idPerson ,dateWork) {
+    street, numberHouse, corpusHouse, servIt, id, idPerson, dateWork) {
     this.timeGetCash = timeGetCash;
     this.cashType = cashType;
     this.periodServ = periodServ;

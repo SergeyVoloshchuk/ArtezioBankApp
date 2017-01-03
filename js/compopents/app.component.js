@@ -183,7 +183,7 @@
                             vm.objForm.typeAdress.$modelValue, vm.objForm.nameCityPoint.$modelValue,
                             vm.objForm.street.$modelValue, vm.objForm.numberHouse.$modelValue,
                             vm.objForm.corpusHouse.$modelValue, vm.objForm.servIt.$modelValue,
-                            id, idPerson);
+                            id, idPerson,vm.objForm.dateWork.$modelValue);
 
                         if (vm.listIncasObj.length === 0) {
 

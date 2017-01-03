@@ -121,6 +121,7 @@
 
                 back();
                 backForItem();
+                vm.itemSucces = false;
             }
 
 
@@ -214,8 +215,10 @@
                 vm.listIncasObj[index].dateWork = vm.dateWork;
 
                 vm.itemSucces = true;
+                backForItem();
 
             }
+
         }
 
     })

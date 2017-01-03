@@ -61,9 +61,9 @@
                 <li ui-sref-active="active"><a ui-sref="login.logging" >Информация</a></li>
             </ul>
         </nav>
-        <div ng-show="main.loginErrorFlag" class="alert alert-danger">
+        <span ng-show="main.loginErrorFlag" class="alert-danger">
             <center> <strong>Ошибка!</strong> Вы ввели некорректные логин или пароль! </center>
-        </div>
+        </span>
         <div class="container">
             <div class="jumbotron">
                 <ui-view>
