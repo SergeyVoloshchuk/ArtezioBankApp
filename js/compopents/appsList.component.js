@@ -98,10 +98,13 @@
                 vm.otherRec = vm.collectApps[index].otherRec;
                 vm.listIncasObj = vm.collectApps[index].collectionObjs;
 
+                vm.indexForItem = index;
+
             }
 
             function updateItem() {
-                var id = vm.id - 1;
+                var id = vm.indexForItem;
+
                 vm.collectApps[id].fioAndOrg = vm.fioAndOrg;
                 vm.collectApps[id].typeInp = vm.typeInp;
                 vm.collectApps[id].otherText = vm.other;

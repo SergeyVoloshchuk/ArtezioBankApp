@@ -17,6 +17,14 @@
                 vm.person = JSON.parse(localStorage.getItem("person"));
             }
 
+           //тестовое заполнение данными только если там нет данных
+           if(localStorage.getItem("collectApps")===null){
+            dataService.getData("../js/json/apps.json").then(function(res) {
+                storageUpdater.updateItem("collectApps", res.massApps );
+                storageUpdater.getItem("collectApps");
+            });
+           } 
+
         }
 
         function logout() {
