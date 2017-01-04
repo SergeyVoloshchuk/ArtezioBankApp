@@ -30,7 +30,7 @@ angular.module('app.helpers')
                     if (re.test(items[i].date)) {
                         ind = items[i].date.indexOf(".");
                         sub = items[i].date.substr(0, ind)
-                        if (sub > startDay && sub < finDay) {
+                        if (sub >= startDay && sub <= finDay) {
                             filtered.push(items[i]);
                         }
                     }
