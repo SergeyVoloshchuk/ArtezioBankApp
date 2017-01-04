@@ -63,7 +63,7 @@
                     storageUpdater.updateItem("banks", vm.bank.banks);
                     vm.banks = storageUpdater.getItem("banks");
 
-                    storageUpdater.updateItem("status", vm.bank.banks);
+                    storageUpdater.updateItem("status", vm.stat.status);
                     vm.status = storageUpdater.getItem("status");
 
                     storageUpdater.updateItem("collectItems", vm.listIncasObjAll);
