@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('app').controller('MainController', MainController);
-    MainController.$inject = ['dataService', 'loginService','storageUpdater','$location'];
+    MainController.$inject = ['dataService', 'loginService', 'storageUpdater', '$location'];
 
-    function MainController(dataService, loginService, storageUpdater,$location) {
+    function MainController(dataService, loginService, storageUpdater, $location) {
         var vm = this;
         vm.submit = submit;
         vm.logout = logout;
@@ -17,13 +17,13 @@
                 vm.person = JSON.parse(localStorage.getItem("person"));
             }
 
-           //тестовое заполнение данными только если там нет данных
-           if(localStorage.getItem("collectApps") === null || localStorage.getItem("collectApps") === "[]"){
-            dataService.getData("../js/json/apps.json").then(function(res) {
-                storageUpdater.updateItem("collectApps", res.massApps );
-                storageUpdater.getItem("collectApps");
-            });
-           } 
+            //тестовое заполнение данными только если там нет данных
+            if (localStorage.getItem("collectApps") === null || localStorage.getItem("collectApps") === "[]") {
+                dataService.getData("../js/json/apps.json").then(function(res) {
+                    storageUpdater.updateItem("collectApps", res.massApps);
+                    storageUpdater.getItem("collectApps");
+                });
+            }
 
         }
 
@@ -43,15 +43,19 @@
                 var person = loginService.getPerson(persons, vm.login);
                 return person;
             }).then(function(res) {
-                vm.loginErrorFlag = false;
                 var flag = loginService.check(vm.login, vm.password, res);
                 if (flag === true) {
                     vm.isLogin = localStorage.getItem("isLogin");
                     vm.person = JSON.parse(localStorage.getItem("person"));
                 } else {
+                    vm.loginMessage = "Логин или пароль введён не верно!Проверьте данные и повторите попытку.";
                     vm.login = "";
                     vm.password = "";
                     vm.loginErrorFlag = true;
+                    //при переходе на другую страницу сообщение пропадёт
+                    setTimeout(function() {
+                        vm.loginErrorFlag = false;
+                    }, 0);
                 }
 
             });
@@ -65,8 +69,6 @@
 
 
 
-
-        
 
     }
 

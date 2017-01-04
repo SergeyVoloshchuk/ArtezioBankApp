@@ -153,6 +153,13 @@
             }
         }
 
+        var infoState = {
+            name: 'data.info',
+            url: '/info/',
+            component: 'info'
+
+        }
+
 
 
 
@@ -166,6 +173,7 @@
         $stateProvider.state(bookMethodState);
         $stateProvider.state(bookBankState);
         $stateProvider.state(allAppsState);
+        $stateProvider.state(infoState);
 
     };
 
