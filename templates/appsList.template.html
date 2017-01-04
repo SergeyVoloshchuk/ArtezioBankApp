@@ -8,10 +8,20 @@
 	</div>
 	<!-- Table -->
 	<div class="col-sm-9">
-		<label class="checkbox-inline"><input type="checkbox" ng-init="byDay = true" ng-model="byDay">За сегодня</label>
-		<label class="checkbox-inline"><input type="checkbox" ng-model="byWeek" >За текущую неделю</label>
-		<label class="checkbox-inline"><input type="checkbox" ng-model="byMonth">За текущий месяц</label>
-	</div>
+		<label class="checkbox-inline"><input type="checkbox" ng-change="byWeek = false;byMonth=false"  ng-init="byDay = true" ng-model="byDay">За сегодня</label>
+		<label class="checkbox-inline"><input type="checkbox"  ng-change="byDay = false;byMonth=false" ng-model="byWeek" >За текущую неделю</label>
+		<label class="checkbox-inline"><input type="checkbox" ng-change="byDay = false;byWeek=false" ng-model="byMonth">За текущий месяц</label>
+		</div>
+		<div class="col-sm-12">
+		<center>
+		<label>
+		По типу: <select ng-model="byType" class="form-control" >
+		<option></option>
+			<option ng-repeat="item in $ctrl.typeApps track by $index" >{{item.name}}</option>
+		</select></label>
+		</center>
+		</div>
+	
 	<table ng-if="!$ctrl.nullTable" class="table">
 		<thead>
 			<tr>
@@ -23,7 +33,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in $ctrl.collectApps |dateFilter:byDay:byWeek:byMonth track by $index">
+			<tr ng-repeat="item in $ctrl.collectApps |dateFilter:byDay:byWeek:byMonth:byType track by $index">
 				<td>{{item.id}}</td>
 				<td> {{item.number}}</td>
 				<td> {{item.date}}</td>
@@ -34,8 +44,8 @@
 					<div class="btn-group unvisual-{{$ctrl.inpFlag}}">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Действие <span class="caret"></span></button>
 						<ul class="dropdown-menu" role="menu">
-							<li><a class="click" ng-click="$ctrl.goUpdateItem($index)">Редактировать</a></li>
-							<li><a class="click" ng-click="$ctrl.deleteItem($index)">Удалить</a></li>
+							<li><a class="click" ng-click="$ctrl.goUpdateItem(item)">Редактировать</a></li>
+							<li><a class="click" ng-click="$ctrl.deleteItem(item)">Удалить</a></li>
 						</ul>
 					</div>
 					

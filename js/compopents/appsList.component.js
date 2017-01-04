@@ -73,16 +73,29 @@
                 }
             }
 
-            function deleteItem(id) {
+            function getIndex(item, mass) {
+                var id;
+                for (var i = 0; i < mass.length; i++) {
+                    if (item.id === mass[i].id) {
+                        id = i;
+                        break;
+                    }
+                }
+                return id;
+            }
+
+            function deleteItem(item) {
+                var id = getIndex(item, vm.collectApps);
                 vm.collectApps.splice(id, 1);
-                //
                 storageUpdater.updateItem("collectApps", vm.collectApps);
                 vm.collectApps = storageUpdater.getItem("collectApps");
                 activate();
             }
 
-            function goUpdateItem(index) {
+            function goUpdateItem(item) {
                 vm.inpFlag = true;
+                var index = getIndex(item, vm.collectApps);
+
                 vm.id = vm.collectApps[index].id;
                 vm.fioAndOrg = vm.collectApps[index].fioAndOrg;
                 vm.typeInp = vm.collectApps[index].typeInp;
@@ -242,7 +255,7 @@
 
             }
 
-    
+
 
         }
 
