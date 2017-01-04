@@ -20,7 +20,7 @@
 				<option ng-repeat="item in $ctrl.typeApps track by $index" >{{item.name}}</option>
 			</select></label>
 			<label>
-			По статусу: <select ng-model="byStatus" class="form-control" >
+			По статусу: <select ng-init="byStatus = $ctrl.status[0].name" ng-model="byStatus" class="form-control" >
 				<option></option>
 				<option ng-repeat="item in $ctrl.status track by $index" >{{item.name}}</option>
 			</select></label>
