@@ -8,7 +8,8 @@
             period: '<',
             method: '<',
             code: '<',
-            bank: '<'
+            bank: '<',
+            stat: '<'
         },
 
         controller: function(storageUpdater) {
@@ -19,6 +20,7 @@
             vm.codes = vm.code.codes;
             vm.methods = vm.method.methods;
             vm.banks = vm.bank.banks;
+            vm.status = vm.stat.status;
             vm.validTime = validTime;
             vm.periodCheck = periodCheck;
             vm.deleteItem = deleteItem;
@@ -30,11 +32,15 @@
             vm.goUpdateSubItem = goUpdateSubItem;
             vm.backForItem = backForItem;
             vm.updateSubItem = updateSubItem;
+            vm.sign = sign;
+            vm.executed = executed;
 
             activate();
 
             function activate() {
                 console.log("collectApps activate");
+                vm.isLogin = storageUpdater.getItem("isLogin");
+                vm.person = storageUpdater.getItem("person");
 
                 // если там ничего нет
                 if (localStorage.getItem("collectApps") === null || localStorage.getItem("collectApps") === "[]") {
@@ -86,7 +92,7 @@
 
             function deleteItem(item) {
                 var id = getIndex(item, vm.collectApps);
-                vm.collectApps.splice(id, 1);
+                vm.collectApps[id].status = "Удалён";
                 storageUpdater.updateItem("collectApps", vm.collectApps);
                 vm.collectApps = storageUpdater.getItem("collectApps");
                 activate();
@@ -111,7 +117,7 @@
                 vm.numberSwift = vm.collectApps[index].numberSwift;
                 vm.otherRec = vm.collectApps[index].otherRec;
                 vm.listIncasObj = vm.collectApps[index].collectionObjs;
-
+                vm.statuse = vm.collectApps[index].status;
                 vm.indexForItem = index;
 
             }
@@ -133,12 +139,26 @@
                 vm.collectApps[id].numberSwift = vm.numberSwift;
                 vm.collectApps[id].otherRec = vm.otherRec;
                 vm.collectApps[id].collectionObjs = vm.listIncasObj;
+                vm.collectApps[id].status = vm.statuse;
                 storageUpdater.updateItem("collectApps", vm.collectApps);
                 vm.collectApps = storageUpdater.getItem("collectApps");
 
                 back();
                 backForItem();
                 vm.itemSucces = false;
+            }
+
+            function sign(item){
+                 var id = getIndex(item, vm.collectApps);
+                 vm.collectApps[id].status = "Подписан";
+                 storageUpdater.updateItem("collectApps", vm.collectApps);
+                 vm.collectApps = storageUpdater.getItem("collectApps");
+            }
+            function executed(item){
+                var id = getIndex(item, vm.collectApps);
+                 vm.collectApps[id].status = "Исполнен";
+                 storageUpdater.updateItem("collectApps", vm.collectApps);
+                 vm.collectApps = storageUpdater.getItem("collectApps");
             }
 
 
@@ -236,7 +256,8 @@
 
             }
 
-            // сортировки
+
+         
             function getDataCurr() {
                 var date = new Date();
                 var currDate = date.getDate();

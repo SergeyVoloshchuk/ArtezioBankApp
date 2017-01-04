@@ -8,7 +8,8 @@
             period: '<',
             method: '<',
             code: '<',
-            bank: '<'
+            bank: '<',
+            stat: '<'
         },
         controller: function(storageUpdater) {
 
@@ -40,6 +41,7 @@
                     localStorage.getItem("method") === null ||
                     localStorage.getItem("codes") === null ||
                     localStorage.getItem("banks") === null ||
+                    localStorage.getItem("status") === null ||
                     localStorage.getItem("collectItems") === null ||
                     localStorage.getItem("collectApps") === null) {
 
@@ -61,6 +63,9 @@
                     storageUpdater.updateItem("banks", vm.bank.banks);
                     vm.banks = storageUpdater.getItem("banks");
 
+                    storageUpdater.updateItem("status", vm.bank.banks);
+                    vm.status = storageUpdater.getItem("status");
+
                     storageUpdater.updateItem("collectItems", vm.listIncasObjAll);
                     getItemsPersonal();
 
@@ -75,6 +80,7 @@
                     vm.methods = storageUpdater.getItem("method");
                     vm.codes = storageUpdater.getItem("codes");
                     vm.banks = storageUpdater.getItem("banks");
+                    vm.status = storageUpdater.getItem("status");
                     vm.listApps = storageUpdater.getItem("collectApps");
                     getItemsPersonal();
 
@@ -91,12 +97,11 @@
                 var number;
                 var person = storageUpdater.getItem("person");
                 var idPerson = person.id;
-
                 var itemApp = new CollectionApp(vm.appform.typeInp.$modelValue, vm.appform.fioAndOrg.$modelValue, vm.appform.otherText.$modelValue, vm.appform.bankIt.$modelValue,
                     vm.appform.inn.$modelValue, vm.appform.kpp.$modelValue, vm.appform.fullNameOrg.$modelValue,
                     vm.appform.phoneForm.$modelValue, vm.appform.numberItem.$modelValue, vm.appform.bik.$modelValue,
                     vm.appform.numberCorrect.$modelValue, vm.appform.numberSwift.$modelValue, vm.appform.otherRec.$modelValue,
-                    vm.listIncasObj, id, idPerson, dateFormat, number);
+                    vm.listIncasObj, id, idPerson, dateFormat, number, "Создан");
 
                 if (vm.listApps.length === 0) {
 
@@ -274,7 +279,7 @@
                     }
                 }
             }
-            
+
 
 
 

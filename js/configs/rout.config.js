@@ -39,6 +39,9 @@
                 },
                 bank: function(dataService) {
                     return dataService.getData("../js/json/bank.json");
+                },
+                stat: function(dataService) {
+                    return dataService.getData("../js/json/status.json");
                 }
             }
 
@@ -119,6 +122,8 @@
             }
         }
 
+
+
         var allAppsState = {
             name: 'data.appsList',
             url: '/data/apps/',
@@ -141,6 +146,9 @@
                 },
                 bank: function(dataService) {
                     return dataService.getData("../js/json/bank.json");
+                },
+                stat: function(dataService) {
+                    return dataService.getData("../js/json/status.json");
                 }
             }
         }
@@ -158,6 +166,7 @@
         $stateProvider.state(bookMethodState);
         $stateProvider.state(bookBankState);
         $stateProvider.state(allAppsState);
+
     };
 
 })();

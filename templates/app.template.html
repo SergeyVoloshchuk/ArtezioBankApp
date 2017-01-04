@@ -14,13 +14,17 @@
 </div>
 
 <form ng-submit="$ctrl.createApp()" name="$ctrl.appform" class="form-horizontal" novalidate>
+
+
+	
+
 	<div class="form-group">
 		<label  class="col-sm-3 control-label">Тип заявки *</label>
 		<div class="col-sm-9">
 
 			<select data-toggle="tooltip" title="Тип заявки, выбираемый при формировании ЭД" ng-model="$ctrl.typeInp"  name="typeInp" class="form-control" ng-class="{'error' : $ctrl.appform.typeInp.$invalid && !$ctrl.appform.typeInp.$pristine }" required>
 				<option></option>
-				<option ng-repeat="type in $ctrl.typeApps">{{type.name}}</option>
+				<option ng-repeat="type in $ctrl.typeApps track by $index">{{type.name}}</option>
 			</select>
 			<span ng-show="$ctrl.appform.typeInp.$error.required && !$ctrl.appform.typeInp.$pristine" class="label label-warning">Не указан тип
 			заявки</span>

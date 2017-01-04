@@ -1,7 +1,7 @@
 angular.module('app.helpers')
     .filter('dateFilter', function() {
 
-        return function(items, day, week, month, type) {
+        return function(items, day, week, month, type, status) {
 
             Date.prototype.daysInMonth = function() {
                 return 32 - new Date(this.getFullYear(), this.getMonth(), 32).getDate();
@@ -58,6 +58,17 @@ angular.module('app.helpers')
                 var typeMas = [];
                 for (var i = 0; i < filtered.length; i++) {
                     if (type === filtered[i].typeInp) {
+                        typeMas.push(filtered[i]);
+                    }
+                }
+                filtered = typeMas;
+
+            }
+
+             if (status) {
+                var typeMas = [];
+                for (var i = 0; i < filtered.length; i++) {
+                    if (status === filtered[i].status) {
                         typeMas.push(filtered[i]);
                     }
                 }
